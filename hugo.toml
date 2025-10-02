@@ -3,6 +3,35 @@ languageCode = 'en-us'
 title = 'Harsh Sharma'
 theme = 'PaperMod'
 
+# Build configuration for optimization
+[build]
+  writeStats = true
+
+[build.buildStats]
+  enable = true
+
+# Minification settings
+[minify]
+  minifyOutput = true
+  disableCSS = false
+  disableHTML = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+  [minify.tdewolff]
+    [minify.tdewolff.css]
+      keepCSS2 = true
+      precision = 0
+    [minify.tdewolff.html]
+      keepComments = false
+      keepConditionalComments = true
+      keepDefaultAttrVals = true
+      keepDocumentTags = true
+      keepEndTags = true
+      keepQuotes = false
+      keepWhitespace = false
+
 [params]
   description = "Personal blog and portfolio"
   author = "Harsh Sharma"

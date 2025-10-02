@@ -45,7 +45,7 @@
                     if (guitarMatch) {
                         const newHTML = text.replace(
                             guitarMatch[0],
-                            `<span class="easter-egg-guitar" style="cursor: pointer; text-decoration: underline dotted; transition: all 0.2s ease;">${guitarMatch[0]}</span>`
+                            `<span class="easter-egg-guitar">${guitarMatch[0]}</span>`
                         );
                         p.innerHTML = newHTML;
 
