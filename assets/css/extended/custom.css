@@ -842,11 +842,6 @@ a.footnote-backref {
     align-items: center;
   }
 
-  .cta-link {
-    width: 100%;
-    max-width: 280px;
-  }
-
   .main,
   .home-page {
     padding: 0 15px;
