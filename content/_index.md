@@ -8,7 +8,9 @@ title: "Harsh Sharma"
 
 <h2 class="home-hero-heading">Hi, I'm <span>Harsh Sharma</span>,</h2>
 
-I'm currently a Product Manager at Clinikally (YC S22), where I lead the e-pharmacy & digital health platform serving 3 Million Monthly users. Previously I was a Public Health Researcher & Social Scientist. Outside of core product work, I also:
+I'm currently a Product Manager at Clinikally (YC S22), where I lead the e-pharmacy & digital health platform serving 3 Million Monthly users. Previously I was a Public Health Researcher & Social Scientist. 
+
+Outside of core product work, I also:
 
 * Built our entire _[ELT data pipeline from scratch](/posts/building-elt-pipeline-clinikally/)_ (BigQuery and dBt), Deployed & Setup Metabase for visualisation
 * Shipped _[Clara, India's first clinical-grade AI skin analysis](https://clara.clinikally.com/_)_ that processes 14 parameters in <5 seconds
