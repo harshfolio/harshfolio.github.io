@@ -400,6 +400,12 @@ h1, h2, h3, h4, h5, h6,
   margin: 0;
 }
 
+.post-entry-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .post-entry {
   padding: var(--spacing-lg);
   margin: 0 0 var(--spacing-md) 0 !important;
@@ -408,16 +414,17 @@ h1, h2, h3, h4, h5, h6,
   border-radius: var(--radius);
   box-shadow: none;
   transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
 }
 
-.post-entry:hover {
+.post-entry-link:hover .post-entry {
   background: var(--code-bg);
   border-color: var(--tertiary);
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
-.dark .post-entry:hover {
+.dark .post-entry-link:hover .post-entry {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -426,17 +433,11 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: var(--spacing-xs);
   margin-top: 0;
   font-weight: 400;
-}
-
-/* Card/component links - no underline, color change on hover */
-.post-entry .entry-header h3 a {
   color: var(--content);
-  text-decoration: none;
-  border-bottom: none;
   transition: color var(--transition-fast);
 }
 
-.post-entry:hover .entry-header h3 a {
+.post-entry-link:hover .entry-header h3 {
   color: var(--primary);
 }
 
@@ -840,6 +841,11 @@ a.footnote-backref {
     flex-direction: column;
     gap: var(--spacing-md);
     align-items: center;
+  }
+
+  .cta-link {
+    padding: 12px 32px;
+    font-size: 15px;
   }
 
   .main,
