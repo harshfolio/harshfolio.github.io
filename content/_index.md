@@ -17,6 +17,9 @@ I'm currently a Product Manager at Clinikally (YC S22), leading the e-pharmacy &
 I bring a researcher's rigor to product decisions. Perpetual noob that's currently learning to play the guitar.
 
 <div class="home-cta-section">
-  <a href="mailto:harshsharma12021@gmail.com" title="harshsharma12021@gmail.com" class="cta-link">Email Me</a>
-  <a href="https://calendar.notion.so/meet/harshclinikally/hi" target="_blank" rel="noopener noreferrer" class="cta-link">Book a 1-1 Call</a>
+  <div class="btn-group btn-group--center">
+    <a href="mailto:harshsharma12021@gmail.com" title="harshsharma12021@gmail.com" class="btn btn--outline btn--sm">Email Me</a>
+    <a href="https://calendar.notion.so/meet/harshclinikally/hi" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Book a 1-1 Call</a>
+  </div>
+  
 </div>

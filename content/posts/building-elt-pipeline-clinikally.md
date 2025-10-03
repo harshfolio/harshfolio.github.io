@@ -1,9 +1,9 @@
 ---
-title: "Building a Modern analytics stack without an engineering degree"
+title: "Building a modern analytics stack without an engineering degree"
 description: "How I built Clinikally's entire analytics infrastructure from scratch using DLT, BigQuery, dbt, and Metabase to serve cross-functional teams."
 date: 2025-03-23
 draft: false
-tags: ["data engineering", "ELT", "dbt", "BigQuery", "analytics"]
+tags: ["analytics", "bigquery", "dbt", "elt", "data-engineering"]
 ---
 
 ## The Problem

@@ -16,3 +16,7 @@ Thumbs.db
 
 # Don't include README in Hugo builds
 README.md
+
+# Local tooling binaries; only keep tracked scripts
+.bin/*
+!.bin/sync-readme

@@ -4,6 +4,9 @@
 <style>
   /* Critical layout CSS only - variables are in custom.css */
   body{margin:0}.header{max-width:800px;margin:0 auto}.nav{display:flex;justify-content:space-between;align-items:center}.main{max-width:800px;margin:0 auto}
+  /* Ensure skip link stays off-screen until focused to avoid FOUC */
+  .skip-to-main{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  .skip-to-main:focus{left:0;top:0;width:auto;height:auto;padding:8px 12px;background:#007bff;color:#fff;z-index:1000}
 </style>
 
 {{- /* Resource hints for external resources */ -}}
@@ -28,3 +31,37 @@
   });
 </script>
 {{ end }}
+
+{{- /* JSON-LD structured data */ -}}
+{{- $author := (site.Params.author | default site.Title) -}}
+{{- $image := "/images/harsh-sharma.jpeg" | absURL -}}
+
+{{- if .IsHome -}}
+  {{- $sameAs := slice -}}
+  {{- range site.Params.socialIcons -}}
+    {{- $sameAs = $sameAs | append .url -}}
+  {{- end -}}
+  {{- $person := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" $author
+      "url" site.BaseURL
+      "image" $image
+      "sameAs" $sameAs -}}
+  <script type="application/ld+json">{{ $person | jsonify }}</script>
+{{- else if .IsPage -}}
+  {{- $desc := .Description -}}
+  {{- if not $desc }}{{- $desc = .Summary -}}{{- end -}}
+  {{- $post := dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+      "headline" .Title
+      "description" ($desc | plainify)
+      "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+      "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+      "author" (dict "@type" "Person" "name" $author)
+      "publisher" (dict "@type" "Person" "name" $author)
+      "image" $image -}}
+  <script type="application/ld+json">{{ $post | jsonify }}</script>
+{{- end -}}

@@ -2,6 +2,7 @@ baseURL = 'https://harshfolio.github.io/'
 languageCode = 'en-us'
 title = 'Harsh Sharma'
 theme = 'PaperMod'
+enableRobotsTXT = true
 
 # Build configuration for optimization
 [build]
@@ -35,6 +36,8 @@ theme = 'PaperMod'
 [params]
   description = "Personal blog and portfolio"
   author = "Harsh Sharma"
+  # Sections to list on home page
+  mainSections = ["posts"]
 
   # Site icon/favicon
   assets.favicon = "/images/harsh-sharma.jpeg"
