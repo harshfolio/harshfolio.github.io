@@ -1,8 +1,6 @@
 {
   "htmlElements": {
-    "tags": [
-      "script"
-    ],
+    "tags": null,
     "classes": null,
     "ids": null
   }

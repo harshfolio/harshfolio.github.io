@@ -30,10 +30,6 @@
             </ul>
 
             <div class="accessibility-tools">
-                <div class="font-size-controls">
-                    <button id="font-size-smaller" title="Decrease font size" aria-label="Decrease font size">A-</button>
-                    <button id="font-size-larger" title="Increase font size" aria-label="Increase font size">A+</button>
-                </div>
                 {{- if (not site.Params.disableThemeToggle) }}
                 <button id="theme-toggle" accesskey="t" title="Toggle theme" aria-label="Toggle dark mode" onclick="toggleTheme()">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
