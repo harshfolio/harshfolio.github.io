@@ -12,3 +12,58 @@
         });
     });
 </script>
+
+<script>
+    // Reading progress indicator
+    document.addEventListener('DOMContentLoaded', function() {
+        const progressBar = document.querySelector('.progress-indicator-bar');
+        const postContent = document.querySelector('.post-content');
+
+        if (progressBar && postContent) {
+            const updateProgress = () => {
+                const totalHeight = postContent.scrollHeight - window.innerHeight;
+                const progress = (window.scrollY / totalHeight) * 100;
+                progressBar.style.width = `${Math.min(progress, 100)}%`;
+            };
+
+            window.addEventListener('scroll', updateProgress);
+            updateProgress(); // Initial update
+        }
+    });
+</script>
+
+<script>
+    // Font size changer
+    document.addEventListener('DOMContentLoaded', function() {
+        const smallerBtn = document.getElementById('font-size-smaller');
+        const largerBtn = document.getElementById('font-size-larger');
+        const postContent = document.querySelector('.post-content');
+        const FONT_SIZE_KEY = 'pref-font-size';
+        const FONT_STEP = 0.1;
+        const MIN_FONT_SIZE = 0.8;
+        const MAX_FONT_SIZE = 1.5;
+
+        const getStoredFontSize = () => {
+            const storedSize = localStorage.getItem(FONT_SIZE_KEY);
+            return storedSize ? parseFloat(storedSize) : 1;
+        };
+
+        const setFontSize = (size) => {
+            const newSize = Math.max(MIN_FONT_SIZE, Math.min(MAX_FONT_SIZE, size));
+            postContent.style.fontSize = `${newSize}rem`;
+            localStorage.setItem(FONT_SIZE_KEY, newSize);
+        };
+
+        if (postContent) {
+            setFontSize(getStoredFontSize());
+
+            smallerBtn.addEventListener('click', () => {
+                setFontSize(getStoredFontSize() - FONT_STEP);
+            });
+
+            largerBtn.addEventListener('click', () => {
+                setFontSize(getStoredFontSize() + FONT_STEP);
+            });
+        }
+    });
+</script>

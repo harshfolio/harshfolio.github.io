@@ -1,38 +1,9 @@
-{{- /* theme-toggle is enabled */}}
-{{- if (not site.Params.disableThemeToggle) }}
-{{- /* theme is light */}}
-{{- if (eq site.Params.defaultTheme "light") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    }
-
-</script>
-{{- /* theme is dark */}}
-{{- else if (eq site.Params.defaultTheme "dark") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    }
-
-</script>
-{{- else }}
-{{- /* theme is auto */}}
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-{{- end }}
-{{- end }}
 
 <a class="skip-to-main" href="#main-content">Skip to main content</a>
 <header class="header">
+    <div class="progress-indicator-container">
+        <div class="progress-indicator-bar"></div>
+    </div>
     <nav class="nav">
         <div class="logo">
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ site.Title }}">
@@ -54,8 +25,15 @@
                 {{- end }}
             </ul>
 
-            {{- if (not site.Params.disableThemeToggle) }}
-            <button id="theme-toggle" accesskey="t" title="Toggle theme" aria-label="Toggle dark mode" onclick="toggleTheme()">
+            <div class="accessibility-tools">
+                <div class="font-size-controls">
+                    <button id="font-size-smaller" title="Decrease font size" aria-label="Decrease font size">A-</button>
+                    <button id="font-size-larger" title="Increase font size" aria-label="Increase font size">A+</button>
+                </div>
+                {{- if (not site.Params.disableThemeToggle) }}
+                <button id="theme-toggle" accesskey="t" title="Toggle theme" aria-label="Toggle dark mode" onclick="toggleTheme()">
+            {{- end }}
+            </div>
                 <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
                     fill="currentColor">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -76,14 +54,38 @@
             </script>
             <script>
                 function toggleTheme() {
-                    if (document.body.classList.contains("dark")) {
-                        document.body.classList.remove("dark");
-                        localStorage.setItem("pref-theme", "light");
+                    const currentTheme = localStorage.getItem("pref-theme") || "auto";
+                    let newTheme;
+
+                    if (currentTheme === "light") {
+                        newTheme = "dark";
+                    } else if (currentTheme === "dark") {
+                        newTheme = "auto";
                     } else {
+                        newTheme = "light";
+                    }
+
+                    localStorage.setItem("pref-theme", newTheme);
+                    applyTheme(newTheme);
+                }
+
+                function applyTheme(theme) {
+                    if (theme === "light") {
+                        document.body.classList.remove("dark");
+                    } else if (theme === "dark") {
                         document.body.classList.add("dark");
-                        localStorage.setItem("pref-theme", "dark");
+                    } else {
+                        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                            document.body.classList.add("dark");
+                        } else {
+                            document.body.classList.remove("dark");
+                        }
                     }
                 }
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    applyTheme(localStorage.getItem("pref-theme") || "auto");
+                });
             </script>
             {{- end }}
         </div>

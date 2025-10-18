@@ -1,6 +1,9 @@
 {{- /* Performance optimizations for head section */ -}}
 
 {{- /* Inline critical CSS for faster First Contentful Paint */ -}}
+{{- $readabilityCSS := resources.Get "css/extended/readability.css" | postCSS }}
+<link rel="stylesheet" href="{{ $readabilityCSS.Permalink }}">
+
 <style>
   /* Critical layout CSS only - variables are in custom.css */
   body{margin:0}.header{max-width:800px;margin:0 auto}.nav{display:flex;justify-content:space-between;align-items:center}.main{max-width:800px;margin:0 auto}
