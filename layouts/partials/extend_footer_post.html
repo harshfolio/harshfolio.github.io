@@ -14,56 +14,41 @@
 </script>
 
 <script>
-    // Reading progress indicator
+    // Reading progress indicator with show/hide on scroll
     document.addEventListener('DOMContentLoaded', function() {
-        const progressBar = document.querySelector('.progress-indicator-bar');
+        const progress = document.querySelector('.reading-progress');
+        const progressBar = document.querySelector('.reading-progress-bar');
         const postContent = document.querySelector('.post-content');
 
-        if (progressBar && postContent) {
+        if (progress && progressBar && postContent) {
+            let scrollTimeout;
+            let isScrolling = false;
+
             const updateProgress = () => {
-                const totalHeight = postContent.scrollHeight - window.innerHeight;
-                const progress = (window.scrollY / totalHeight) * 100;
-                progressBar.style.width = `${Math.min(progress, 100)}%`;
+                const windowHeight = window.innerHeight;
+                const documentHeight = postContent.scrollHeight;
+                const scrollTop = window.scrollY;
+                const trackLength = documentHeight - windowHeight;
+                const scrollPercent = (scrollTop / trackLength) * 100;
+
+                progressBar.style.width = `${Math.min(Math.max(scrollPercent, 0), 100)}%`;
+
+                // Show on scroll
+                if (!isScrolling) {
+                    progress.classList.add('visible');
+                    isScrolling = true;
+                }
+
+                // Hide after 1 second of no scrolling
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    progress.classList.remove('visible');
+                    isScrolling = false;
+                }, 1000);
             };
 
-            window.addEventListener('scroll', updateProgress);
-            updateProgress(); // Initial update
-        }
-    });
-</script>
-
-<script>
-    // Font size changer
-    document.addEventListener('DOMContentLoaded', function() {
-        const smallerBtn = document.getElementById('font-size-smaller');
-        const largerBtn = document.getElementById('font-size-larger');
-        const postContent = document.querySelector('.post-content');
-        const FONT_SIZE_KEY = 'pref-font-size';
-        const FONT_STEP = 0.1;
-        const MIN_FONT_SIZE = 0.8;
-        const MAX_FONT_SIZE = 1.5;
-
-        const getStoredFontSize = () => {
-            const storedSize = localStorage.getItem(FONT_SIZE_KEY);
-            return storedSize ? parseFloat(storedSize) : 1;
-        };
-
-        const setFontSize = (size) => {
-            const newSize = Math.max(MIN_FONT_SIZE, Math.min(MAX_FONT_SIZE, size));
-            postContent.style.fontSize = `${newSize}rem`;
-            localStorage.setItem(FONT_SIZE_KEY, newSize);
-        };
-
-        if (postContent) {
-            setFontSize(getStoredFontSize());
-
-            smallerBtn.addEventListener('click', () => {
-                setFontSize(getStoredFontSize() - FONT_STEP);
-            });
-
-            largerBtn.addEventListener('click', () => {
-                setFontSize(getStoredFontSize() + FONT_STEP);
-            });
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            updateProgress();
         }
     });
 </script>
