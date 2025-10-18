@@ -20,3 +20,6 @@ README.md
 # Local tooling binaries; only keep tracked scripts
 .bin/*
 !.bin/sync-readme
+
+# Node
+node_modules/
