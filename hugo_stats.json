@@ -37,6 +37,7 @@
       "ul"
     ],
     "classes": [
+      "accessibility-tools",
       "btn",
       "btn--outline",
       "btn--sm",
@@ -49,6 +50,7 @@
       "entry-header",
       "entry-hint-parent",
       "entry-link",
+      "font-size-controls",
       "footer",
       "header",
       "header-right",
@@ -74,6 +76,8 @@
       "post-tags",
       "post-title",
       "posts-list",
+      "progress-indicator-bar",
+      "progress-indicator-container",
       "published-posts",
       "skip-to-main",
       "social-links",
@@ -91,6 +95,8 @@
       "2-transform-dbt",
       "3-visualize-metabase",
       "designing-the-diagnosis-agent-a-deep-dive",
+      "font-size-larger",
+      "font-size-smaller",
       "lessons-learned",
       "main-content",
       "moon",
