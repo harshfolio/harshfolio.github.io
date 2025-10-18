@@ -6,8 +6,6 @@ draft: false
 tags: ["type/writing", "topic/product-management", "topic/artificial-intelligence"]
 ---
 
-# Building a Medical AI Assistant: The Paradoxes That Shaped the Architecture
-
 ## The Signal
 
 The pattern started showing up everywhere.
