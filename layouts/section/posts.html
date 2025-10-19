@@ -1,0 +1,56 @@
+{{- define "main" }}
+
+<article id="main-content" class="post-list-page main">
+  <header class="post-list-header">
+    <h1>Blog</h1>
+    {{- with .Params.description }}<p class="post-list-desc">{{ . }}</p>{{ end -}}
+  </header>
+
+  <div class="posts-grid">
+    {{- $paginator := .Paginate (.Pages.ByDate.Reverse) -}}
+    {{- range $paginator.Pages -}}
+      {{- $cover := .Params.cover -}}
+      {{- $showCover := true -}}
+      {{- if and $cover (isset $cover "hiddenInList") }}
+        {{- $showCover = (not $cover.hiddenInList) -}}
+      {{- end -}}
+      {{- $img := "" -}}
+      {{- if and $cover (isset $cover "image") (ne $cover.image "") -}}
+        {{- $img = $cover.image -}}
+      {{- else if .Params.image -}}
+        {{- $img = .Params.image -}}
+      {{- end -}}
+
+      <a class="post-card" href="{{ .RelPermalink }}">
+        {{- if and $showCover (ne $img "") -}}
+        <div class="post-card__cover">
+          <img class="post-card__image" src="{{ $img | absURL }}" alt="" loading="lazy" />
+        </div>
+        {{- end -}}
+        <div class="post-card__content">
+          <h2 class="post-card__title">{{ .Title }}</h2>
+          {{- if .Description }}<p class="post-card__excerpt">{{ .Description }}</p>{{- end }}
+          <div class="post-card__meta">
+            <time>{{ .Date.Format "January 2, 2006" }}</time>
+            {{- if .ReadingTime }}<span> · {{ .ReadingTime }} min</span>{{- end }}
+          </div>
+          {{- with .Params.tags }}
+          <div class="post-card__tags">
+            {{- range . }}<span class="tag">{{ . }}</span>{{- end }}
+          </div>
+          {{- end }}
+        </div>
+      </a>
+    {{- end -}}
+  </div>
+
+  {{- if gt $paginator.TotalPages 1 -}}
+  <nav class="pagination" aria-label="Pagination">
+    {{- if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="page-link">Newer</a>{{ end -}}
+    {{- if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="page-link">Older</a>{{ end -}}
+  </nav>
+  {{- end -}}
+</article>
+
+{{- end }}
+

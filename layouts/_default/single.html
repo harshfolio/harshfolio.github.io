@@ -2,6 +2,7 @@
 
 <article id="main-content" class="post-single">
   <header class="post-header">
+    {{- partial "post-hero.html" . -}}
     <h1 class="post-title">{{ .Title }}</h1>
 
     {{- if .Description }}
