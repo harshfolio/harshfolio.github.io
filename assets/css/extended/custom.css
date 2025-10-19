@@ -21,6 +21,8 @@
 }
 
 :root {
+  /* Off-canvas sidebar width for pushout */
+  --side-panel-width: clamp(220px, 85vw, 300px);
   /* Color System - OKLCH for better color mixing */
   --primary-hsl: 211 100% 50%;
   --primary: #007bff !important;  /* Fallback to hex for compatibility */
@@ -382,14 +384,13 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   top: 0;
   right: 0;
   height: 100%;
-  width: 300px;
-  max-width: 85%;
+  width: var(--side-panel-width);
   background: var(--theme);
   border-left: 1px solid var(--border);
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transform: translateX(16px);
+  transform: translateX(var(--side-panel-width));
   opacity: 0;
-  transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 220ms ease;
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 200ms ease;
   display: flex;
   flex-direction: column;
   will-change: transform, opacity;
@@ -398,6 +399,17 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 .side-menu.open .side-menu__panel {
   transform: translateX(0);
   opacity: 1;
+}
+
+/* Pushout: shift page chrome when menu is open */
+body.menu-open .header,
+body.menu-open .main,
+body.menu-open .home-page,
+body.menu-open .post-single,
+body.menu-open .footer {
+  transform: translateX(calc(-1 * var(--side-panel-width)));
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
 }
 
 .side-menu__header {
