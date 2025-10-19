@@ -387,6 +387,11 @@ code ::selection {
   white-space: normal;
 }
 
+/* Hide line break on desktop, show on mobile */
+.mobile-only {
+  display: none;
+}
+
 /* Social Icons */
 .social-icons {
   display: flex;
@@ -1354,6 +1359,10 @@ a.footnote-backref {
 @media (max-width: 768px) {
   .home-hero-name h1 {
     font-size: 1.8rem;
+  }
+
+  .mobile-only {
+    display: inline;
   }
 
   .btn-group--center {
