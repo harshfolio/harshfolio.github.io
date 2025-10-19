@@ -64,18 +64,17 @@
     <div class="side-menu__backdrop" data-close="true"></div>
     <aside class="side-menu__panel" role="dialog" aria-modal="true" aria-labelledby="side-menu-title">
       <div class="side-menu__header">
-        <span id="side-menu-title" class="side-menu__title">
-          {{- if eq site.Title "Harsh Sharma" -}}
-            Harsh<span class="logo-break"><br></span> Sharma
-          {{- else -}}
-            {{ site.Title }}
-          {{- end -}}
-        </span>
+        <span id="side-menu-title" class="side-menu__title">{{ site.Title }}</span>
         <div class="side-menu__actions">
           <button id="menu-close" class="side-menu__close" aria-label="Close menu">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
+      </div>
+      <div class="side-menu__profile">
+        <img class="side-menu__avatar" src="{{ "/images/harsh-sharma.jpeg" | absURL }}" alt="{{ site.Title }}" width="64" height="64" loading="lazy">
+        <p class="side-menu__bio">{{ site.Params.description }}</p>
+        <a href="mailto:harshsharma12021@gmail.com" class="btn btn--outline btn--sm">Email Me</a>
       </div>
       <nav class="side-menu__nav" role="navigation">
         {{- if gt (len site.Menus.main) 0 -}}

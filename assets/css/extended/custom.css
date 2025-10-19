@@ -422,6 +422,7 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   font-family: var(--font-serif);
   font-size: var(--text-lg);
   color: var(--content);
+  white-space: nowrap;
 }
 
 .side-menu__actions {
@@ -432,9 +433,8 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 
 /* (Removed sidebar theme toggle styles) */
 
-@media (min-width: 768px) {
-  .side-menu__title { white-space: nowrap; }
-}
+/* Title always single line; ellipsis if needed */
+.side-menu__title { overflow: hidden; text-overflow: ellipsis; }
 
 .side-menu__close {
   background: transparent;
@@ -456,6 +456,30 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   display: flex;
   flex-direction: column;
   padding: var(--spacing-sm) 0;
+}
+
+/* Sidebar profile block to reduce empty feel */
+.side-menu__profile {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.side-menu__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+
+.side-menu__bio {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--secondary);
+  text-align: center;
 }
 
 .side-menu__link {
