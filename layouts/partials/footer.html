@@ -14,48 +14,7 @@
             </svg>
         </button>
     </div>
-    <script>
-        // Ensure the theme toggle is visible once rendered
-        (function () {
-            var btn = document.getElementById('theme-toggle');
-            if (btn) btn.classList.add('loaded');
-        })();
-    </script>
-    <script>
-        function toggleTheme() {
-            const currentTheme = localStorage.getItem("pref-theme") || "auto";
-            let newTheme;
-
-            if (currentTheme === "light") {
-                newTheme = "dark";
-            } else if (currentTheme === "dark") {
-                newTheme = "auto";
-            } else {
-                newTheme = "light";
-            }
-
-            localStorage.setItem("pref-theme", newTheme);
-            applyTheme(newTheme);
-        }
-
-        function applyTheme(theme) {
-            if (theme === "light") {
-                document.body.classList.remove("dark");
-            } else if (theme === "dark") {
-                document.body.classList.add("dark");
-            } else {
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.body.classList.add("dark");
-                } else {
-                    document.body.classList.remove("dark");
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            applyTheme(localStorage.getItem("pref-theme") || "auto");
-        });
-    </script>
+    <!-- Theme logic moved to assets/js/site.js -->
     {{- end }}
 
     <div class="year-progress" role="status" aria-label="Year progress indicator">
@@ -69,25 +28,7 @@
     <span>© {{ now.Year }} Harsh Sharma</span>
 </footer>
 
-<script>
-    (function() {
-        const now = new Date();
-        const start = new Date(now.getFullYear(), 0, 1);
-        const end = new Date(now.getFullYear() + 1, 0, 1);
-        const progress = ((now - start) / (end - start)) * 100;
+<!-- Year progress logic moved to assets/js/site.js -->
 
-        const fillElement = document.getElementById('year-progress-fill');
-        const percentageElement = document.getElementById('year-percentage');
-
-        if (fillElement && percentageElement) {
-            const progressValue = progress.toFixed(2);
-            fillElement.style.width = progressValue + '%';
-            percentageElement.textContent = progress.toFixed(1);
-
-            const progressBar = document.querySelector('.year-progress-bar');
-            if (progressBar) {
-                progressBar.setAttribute('aria-valuenow', progressValue);
-            }
-        }
-    })();
-</script>
+{{- $js := resources.Get "js/site.js" | minify | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
