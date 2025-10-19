@@ -9,35 +9,40 @@
 
   <section class="published-posts">
     <h2>Writing</h2>
-    <div class="posts-list">
+    <div class="posts-grid">
       {{- range where site.RegularPages "Type" "in" site.Params.mainSections }}
-      <a href="{{ .RelPermalink }}" class="post-entry-link">
-        <article class="post-entry">
-          <header class="entry-header">
-            <h3>{{ .Title }}</h3>
-          </header>
-          {{- if .Description }}
-          <div class="entry-content">
-            <p>{{ .Description }}</p>
+        {{- $cover := .Params.cover -}}
+        {{- $showCover := true -}}
+        {{- if and $cover (isset $cover "hiddenInList") }}
+          {{- $showCover = (not $cover.hiddenInList) -}}
+        {{- end -}}
+        {{- $img := "" -}}
+        {{- if and $cover (isset $cover "image") (ne $cover.image "") -}}
+          {{- $img = $cover.image -}}
+        {{- else if .Params.image -}}
+          {{- $img = .Params.image -}}
+        {{- end -}}
+
+        <a class="post-card" href="{{ .RelPermalink }}">
+          {{- if and $showCover (ne $img "") -}}
+          <div class="post-card__cover">
+            <img class="post-card__image" src="{{ $img | absURL }}" alt="" loading="lazy" />
           </div>
-          {{- end }}
-          <footer class="entry-footer">
-            <span class="post-meta">
+          {{- end -}}
+          <div class="post-card__content">
+            <h2 class="post-card__title">{{ .Title }}</h2>
+            {{- if .Description }}<p class="post-card__excerpt">{{ .Description }}</p>{{- end }}
+            <div class="post-card__meta">
               <time>{{ .Date.Format "January 2, 2006" }}</time>
-              {{- if .ReadingTime }}
-              <span> · {{ .ReadingTime }} min read</span>
-              {{- end }}
-            </span>
-            {{- if .Params.tags }}
-            <div class="post-tags">
-              {{- range .Params.tags }}
-              <span class="tag">{{ . }}</span>
-              {{- end }}
+              {{- if .ReadingTime }}<span> · {{ .ReadingTime }} min</span>{{- end }}
+            </div>
+            {{- with .Params.tags }}
+            <div class="post-card__tags">
+              {{- range . }}<span class="tag">{{ . }}</span>{{- end }}
             </div>
             {{- end }}
-          </footer>
-        </article>
-      </a>
+          </div>
+        </a>
       {{- end }}
     </div>
   </section>
