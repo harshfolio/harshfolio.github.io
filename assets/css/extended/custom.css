@@ -191,9 +191,13 @@ code ::selection {
    ========================================================================== */
 
 /* Header Layout */
-.header {
+.header,
+body .header,
+.list .header,
+.single .header {
   background: var(--theme) !important;
-  border-bottom: none;
+  background-color: var(--theme) !important;
+  border-bottom: 2px solid var(--border) !important;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -202,8 +206,13 @@ code ::selection {
   transition: transform var(--transition-normal);
 }
 
-.dark .header {
+.dark .header,
+.dark body .header,
+.dark .list .header,
+.dark .single .header {
   background: var(--theme) !important;
+  background-color: var(--theme) !important;
+  border-bottom: 2px solid var(--border) !important;
 }
 
 /* Hide-on-scroll behavior */
