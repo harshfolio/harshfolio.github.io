@@ -760,7 +760,7 @@ body.dark #moon {
   border-radius: var(--radius-md);
   background: var(--theme);
   padding: 6px 10px;
-  margin: 0 var(--spacing-sm);
+  margin: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -823,7 +823,7 @@ body.dark #moon {
 }
 
 /* Button group alignment modifiers */
-.btn-group--center { display: flex; justify-content: center; }
+.btn-group--center { display: flex; justify-content: center; flex-wrap: wrap; }
 .btn-group--end { display: flex; justify-content: flex-end; }
 .btn-group--block { display: flex; width: 100%; }
 .btn-group--stack { display: flex; flex-direction: column; align-items: stretch; }
