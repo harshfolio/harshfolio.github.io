@@ -37,3 +37,11 @@
 /* Badges */
 .badge { display: inline-block; font-size: 11px; line-height: 1; padding: 4px 6px; border-radius: var(--radius); border: 1px solid var(--border); color: var(--tertiary); }
 .badge--featured { color: #a2582a; border-color: #f1c18a; background: color-mix(in oklab, #f1c18a 30%, transparent); }
+
+/* View all posts CTA */
+.posts-view-all {
+  max-width: var(--container-lg);
+  margin: var(--spacing-lg) auto 0;
+  display: flex;
+  justify-content: center;
+}
