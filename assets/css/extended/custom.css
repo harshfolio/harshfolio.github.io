@@ -640,7 +640,7 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 .home-content {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 1rem 0;
 
   & h2 {
     font-size: var(--text-2xl);
@@ -840,7 +840,7 @@ body.dark #moon {
 
 .home-cta-section {
   text-align: center;
-  margin: 1rem 0;
+  margin: 0.75rem 0;
 }
 
 .btn-group--center {
@@ -967,8 +967,8 @@ body.dark #moon {
 
 /* Post List Component */
 .published-posts {
-  margin-top: 3rem;
-  padding: var(--spacing-2xl) 0 var(--spacing-3xl);
+  margin-top: 1rem;
+  padding: var(--spacing-md) 0 var(--spacing-lg);
 
   & > h2 {
     font-size: var(--text-xl);
