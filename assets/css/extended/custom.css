@@ -384,6 +384,30 @@ body .header,
   color: var(--content);
 }
 
+.side-menu__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.side-menu__theme-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--content);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+}
+
+.side-menu__theme-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
 @media (min-width: 768px) {
   .side-menu__title { white-space: nowrap; }
 }
@@ -421,6 +445,12 @@ body .header,
 .side-menu__link:hover {
   background: var(--code-bg);
   color: var(--primary);
+}
+
+.side-menu__link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 /* Prevent body scroll when side menu open */
