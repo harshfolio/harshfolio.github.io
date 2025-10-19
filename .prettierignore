@@ -1,0 +1,8 @@
+public/
+resources/
+themes/
+node_modules/
+.worktrees/
+.bin/
+README.md
+
