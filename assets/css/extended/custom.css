@@ -192,7 +192,7 @@ code ::selection {
 
 /* Header Layout */
 .header {
-  background: transparent;
+  background: var(--theme);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
