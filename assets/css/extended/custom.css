@@ -354,7 +354,7 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 
 .side-menu.open {
@@ -367,7 +367,11 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
+
+.side-menu.open .side-menu__backdrop { opacity: 1; }
 
 .dark .side-menu__backdrop {
   background: rgba(0,0,0,0.7);
@@ -382,15 +386,18 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   max-width: 85%;
   background: var(--theme);
   border-left: 1px solid var(--border);
-  box-shadow: var(--shadow-xl);
-  transform: translateX(100%);
-  transition: transform var(--transition-normal);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transform: translateX(16px);
+  opacity: 0;
+  transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 220ms ease;
   display: flex;
   flex-direction: column;
+  will-change: transform, opacity;
 }
 
 .side-menu.open .side-menu__panel {
   transform: translateX(0);
+  opacity: 1;
 }
 
 .side-menu__header {
@@ -413,29 +420,7 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   gap: var(--spacing-sm);
 }
 
-.side-menu__theme-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--content);
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius);
-}
-
-.side-menu__theme-btn:hover {
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-/* Dynamic sun/moon display in sidebar toggle */
-.side-menu__theme-btn .icon-sun { display: inline; }
-.side-menu__theme-btn .icon-moon { display: none; }
-body.dark .side-menu__theme-btn .icon-sun { display: none; }
-body.dark .side-menu__theme-btn .icon-moon { display: inline; }
+/* (Removed sidebar theme toggle styles) */
 
 @media (min-width: 768px) {
   .side-menu__title { white-space: nowrap; }
