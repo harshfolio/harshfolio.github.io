@@ -28,6 +28,7 @@
         </div>
         {{- end -}}
         <div class="post-card__content">
+          {{- if .Params.featured }}<span class="badge badge--featured">Featured</span>{{ end -}}
           <h2 class="post-card__title">{{ .Title }}</h2>
           {{- if .Description }}<p class="post-card__excerpt">{{ .Description }}</p>{{- end }}
           <div class="post-card__meta">
@@ -53,4 +54,3 @@
 </article>
 
 {{- end }}
-

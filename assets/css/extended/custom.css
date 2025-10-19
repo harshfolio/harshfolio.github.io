@@ -495,6 +495,13 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   color: var(--primary);
 }
 
+/* Focus styles for accessibility */
+:where(a, button, .btn, .post-card, .menu-inline__link, .side-menu__link):focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--primary), black 15%);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .side-menu__link--icon {
   display: inline-flex;
   align-items: center;
@@ -579,6 +586,15 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 /* Hide line break on desktop, show on mobile */
 .mobile-only {
   display: none;
+}
+
+.desktop-only {
+  display: inline;
+}
+
+@media (max-width: 767px) {
+  .mobile-only { display: inline; }
+  .desktop-only { display: none; }
 }
 
 /* Social Icons */
