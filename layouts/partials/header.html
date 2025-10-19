@@ -14,47 +14,49 @@
             <span class="logo-text">Harsh</span>
         </a>
 
-        {{/* Inline desktop menu (hidden on mobile) */}}
-        <ul class="menu-inline" role="menubar">
-          {{- if gt (len site.Menus.main) 0 -}}
-            {{- $currentPage := . -}}
-            {{- range site.Menus.main }}
-              {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL -}}
-              {{- $page_url := $currentPage.Permalink | absLangURL -}}
-              <li role="none">
-                <a role="menuitem" href="{{ .URL | absLangURL }}" class="menu-inline__link{{ if eq $menu_item_url $page_url }} is-active{{ end }}">{{ .Name }}</a>
-              </li>
+        <div class="nav-right">
+          {{/* Inline desktop menu (hidden on mobile) */}}
+          <ul class="menu-inline" role="menubar">
+            {{- if gt (len site.Menus.main) 0 -}}
+              {{- $currentPage := . -}}
+              {{- range site.Menus.main }}
+                {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL -}}
+                {{- $page_url := $currentPage.Permalink | absLangURL -}}
+                <li role="none">
+                  <a role="menuitem" href="{{ .URL | absLangURL }}" class="menu-inline__link{{ if eq $menu_item_url $page_url }} is-active{{ end }}">{{ .Name }}</a>
+                </li>
+              {{- end -}}
+            {{- else -}}
+              <li role="none"><a role="menuitem" href="{{ "" | absLangURL }}" class="menu-inline__link">Home</a></li>
+              <li role="none"><a role="menuitem" href="{{ "posts" | absLangURL }}" class="menu-inline__link">Blog</a></li>
             {{- end -}}
-          {{- else -}}
-            <li role="none"><a role="menuitem" href="{{ "" | absLangURL }}" class="menu-inline__link">Home</a></li>
-            <li role="none"><a role="menuitem" href="{{ "posts" | absLangURL }}" class="menu-inline__link">Blog</a></li>
-          {{- end -}}
-        </ul>
-        <button class="header-theme-toggle" aria-label="Toggle theme" title="Toggle theme" onclick="toggleTheme()">
-          <!-- Moon (dark indicator) -->
-          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-          <!-- Sun (light indicator) -->
-          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
-        <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu" class="menu-toggle">
+          </ul>
+          <button class="header-theme-toggle" aria-label="Toggle theme" title="Toggle theme" onclick="toggleTheme()">
+            <!-- Moon (dark indicator) -->
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Sun (light indicator) -->
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu" class="menu-toggle">
             <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
-        </button>
+          </button>
+        </div>
     </nav>
   </header>
 
@@ -133,7 +135,6 @@
             menuToggle.setAttribute('aria-expanded', 'true');
             menuToggle.classList.add('open');
             document.body.classList.add('no-scroll');
-            document.body.classList.add('menu-open');
             if (header) header.classList.remove('header--hidden');
             const items = getFocusable();
             if (items.length) items[0].focus();
@@ -145,7 +146,6 @@
             menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.classList.remove('open');
             document.body.classList.remove('no-scroll');
-            document.body.classList.remove('menu-open');
             if (lastFocused) lastFocused.focus();
           }
 

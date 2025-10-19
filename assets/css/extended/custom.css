@@ -234,6 +234,12 @@ body .header,
   justify-content: space-between;
 }
 
+.nav-right {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
 /* Logo */
 .logo {
   display: flex !important;
@@ -402,15 +408,7 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 }
 
 /* Pushout: shift page chrome when menu is open */
-body.menu-open .header,
-body.menu-open .main,
-body.menu-open .home-page,
-body.menu-open .post-single,
-body.menu-open .footer {
-  transform: translateX(calc(-1 * var(--side-panel-width)));
-  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: transform;
-}
+/* Pushout removed per request; keep crisp overlay */
 
 .side-menu__header {
   display: flex;
@@ -818,14 +816,14 @@ body.dark #moon {
 
 .home-cta-section {
   text-align: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .btn-group--center {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
   flex-wrap: wrap;
 }
 
