@@ -14,7 +14,7 @@
             <span class="logo-text">Harsh</span>
         </a>
 
-        <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" class="menu-toggle">
+        <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu" class="menu-toggle">
             <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -23,36 +23,102 @@
         </button>
     </nav>
 
-    <div id="dropdown-menu" class="dropdown-menu" aria-hidden="true">
-        <div class="dropdown-content">
-            <a href="{{ "" | absLangURL }}" class="dropdown-link">Home</a>
-            <a href="{{ "posts" | absLangURL }}" class="dropdown-link">Blog</a>
-            <a href="https://linkedin.com/in/harshsharma12021" target="_blank" rel="noopener noreferrer" class="dropdown-link">LinkedIn</a>
-            <a href="https://github.com/harshsharma12021" target="_blank" rel="noopener noreferrer" class="dropdown-link">GitHub</a>
-            <a href="https://x.com/harshsharma12021" target="_blank" rel="noopener noreferrer" class="dropdown-link">X</a>
+    <div id="side-menu" class="side-menu" aria-hidden="true">
+      <div class="side-menu__backdrop" data-close="true"></div>
+      <aside class="side-menu__panel" role="dialog" aria-modal="true" aria-labelledby="side-menu-title">
+        <div class="side-menu__header">
+          <span id="side-menu-title" class="side-menu__title">{{ site.Title }}</span>
+          <button id="menu-close" class="side-menu__close" aria-label="Close menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
         </div>
+        <nav class="side-menu__nav" role="navigation">
+          {{- if gt (len site.Menus.main) 0 -}}
+            {{- range site.Menus.main }}
+              {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
+              <a href="{{ .URL | absLangURL }}" class="side-menu__link"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+            {{- end -}}
+          {{- else -}}
+            <a href="{{ "" | absLangURL }}" class="side-menu__link">Home</a>
+            <a href="{{ "posts" | absLangURL }}" class="side-menu__link">Blog</a>
+          {{- end -}}
+          {{- with site.Params.socialIcons }}
+            {{- range . }}
+              {{- $label := .name | title }}
+              <a href="{{ .url | safeURL }}" class="side-menu__link" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
+            {{- end }}
+          {{- end }}
+        </nav>
+      </aside>
     </div>
 
     <script>
         (function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const dropdownMenu = document.getElementById('dropdown-menu');
+          const menuToggle = document.getElementById('menu-toggle');
+          const sideMenu = document.getElementById('side-menu');
+          const closeBtn = document.getElementById('menu-close');
+          if (!menuToggle || !sideMenu) return;
 
-            menuToggle.addEventListener('click', function() {
-                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                menuToggle.setAttribute('aria-expanded', !isExpanded);
-                dropdownMenu.setAttribute('aria-hidden', isExpanded);
-                dropdownMenu.classList.toggle('show');
-            });
+          let lastFocused = null;
 
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    dropdownMenu.setAttribute('aria-hidden', 'true');
-                    dropdownMenu.classList.remove('show');
-                }
-            });
+          const getFocusable = () => sideMenu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+
+          function openMenu() {
+            lastFocused = document.activeElement;
+            sideMenu.classList.add('open');
+            sideMenu.setAttribute('aria-hidden', 'false');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            menuToggle.classList.add('open');
+            document.body.classList.add('no-scroll');
+            const items = getFocusable();
+            if (items.length) items[0].focus();
+          }
+
+          function closeMenu() {
+            sideMenu.classList.remove('open');
+            sideMenu.setAttribute('aria-hidden', 'true');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+            if (lastFocused) lastFocused.focus();
+          }
+
+          // Toggle click
+          menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) closeMenu(); else openMenu();
+          });
+
+          // Close button
+          if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+          // Backdrop click
+          sideMenu.addEventListener('click', (e) => {
+            if (e.target && e.target.getAttribute('data-close') === 'true') {
+              closeMenu();
+            }
+          });
+
+          // Keyboard handling
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+          });
+
+          // Basic focus trap
+          sideMenu.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+            const items = Array.from(getFocusable());
+            if (!items.length) return;
+            const first = items[0];
+            const last = items[items.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          });
         })();
     </script>
 </header>

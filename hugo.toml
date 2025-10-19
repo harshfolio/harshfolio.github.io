@@ -56,6 +56,17 @@ enableRobotsTXT = true
   # Math/LaTeX support
   math = true
 
+# Primary navigation (Hugo Menus)
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 2
+
 [[params.socialIcons]]
   name = "github"
   url = "https://github.com/harshfolio/"
