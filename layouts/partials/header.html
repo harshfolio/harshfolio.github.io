@@ -39,47 +39,49 @@
             </svg>
         </button>
     </nav>
+  </header>
 
-    <div id="side-menu" class="side-menu" aria-hidden="true">
-      <div class="side-menu__backdrop" data-close="true"></div>
-      <aside class="side-menu__panel" role="dialog" aria-modal="true" aria-labelledby="side-menu-title">
-        <div class="side-menu__header">
-          <span id="side-menu-title" class="side-menu__title">
-            {{- if eq site.Title "Harsh Sharma" -}}
-              Harsh<span class="logo-break"><br></span> Sharma
-            {{- else -}}
-              {{ site.Title }}
-            {{- end -}}
-          </span>
-          <button id="menu-close" class="side-menu__close" aria-label="Close menu">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
-        </div>
-        <nav class="side-menu__nav" role="navigation">
-          {{- if gt (len site.Menus.main) 0 -}}
-            {{- range site.Menus.main }}
-              {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
-              <a href="{{ .URL | absLangURL }}" class="side-menu__link"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
-            {{- end -}}
+  <div id="side-menu" class="side-menu" aria-hidden="true">
+    <div class="side-menu__backdrop" data-close="true"></div>
+    <aside class="side-menu__panel" role="dialog" aria-modal="true" aria-labelledby="side-menu-title">
+      <div class="side-menu__header">
+        <span id="side-menu-title" class="side-menu__title">
+          {{- if eq site.Title "Harsh Sharma" -}}
+            Harsh<span class="logo-break"><br></span> Sharma
           {{- else -}}
-            <a href="{{ "" | absLangURL }}" class="side-menu__link">Home</a>
-            <a href="{{ "posts" | absLangURL }}" class="side-menu__link">Blog</a>
+            {{ site.Title }}
           {{- end -}}
-          {{- with site.Params.socialIcons }}
-            {{- range . }}
-              {{- $label := .name | title }}
-              <a href="{{ .url | safeURL }}" class="side-menu__link" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
-            {{- end }}
+        </span>
+        <button id="menu-close" class="side-menu__close" aria-label="Close menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <nav class="side-menu__nav" role="navigation">
+        {{- if gt (len site.Menus.main) 0 -}}
+          {{- range site.Menus.main }}
+            {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
+            <a href="{{ .URL | absLangURL }}" class="side-menu__link"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+          {{- end -}}
+        {{- else -}}
+          <a href="{{ "" | absLangURL }}" class="side-menu__link">Home</a>
+          <a href="{{ "posts" | absLangURL }}" class="side-menu__link">Blog</a>
+        {{- end -}}
+        {{- with site.Params.socialIcons }}
+          {{- range . }}
+            {{- $label := .name | title }}
+            <a href="{{ .url | safeURL }}" class="side-menu__link" target="_blank" rel="noopener noreferrer">{{ $label }}</a>
           {{- end }}
-        </nav>
-      </aside>
-    </div>
+        {{- end }}
+      </nav>
+    </aside>
+  </div>
 
-    <script>
+  <script>
         (function() {
           const menuToggle = document.getElementById('menu-toggle');
           const sideMenu = document.getElementById('side-menu');
           const closeBtn = document.getElementById('menu-close');
+          const header = document.querySelector('.header');
           if (!menuToggle || !sideMenu) return;
 
           let lastFocused = null;
@@ -93,6 +95,7 @@
             menuToggle.setAttribute('aria-expanded', 'true');
             menuToggle.classList.add('open');
             document.body.classList.add('no-scroll');
+            if (header) header.classList.remove('header--hidden');
             const items = getFocusable();
             if (items.length) items[0].focus();
           }
@@ -143,9 +146,9 @@
             }
           });
         })();
-    </script>
+  </script>
 
-    <script>
+  <script>
         // Header hide/show on scroll: hide while scrolling down, show on scroll up or when scrolling stops
         (function() {
           const header = document.querySelector('.header');
@@ -179,5 +182,4 @@
 
           window.addEventListener('scroll', onScroll, { passive: true });
         })();
-    </script>
-</header>
+  </script>

@@ -324,7 +324,7 @@ body .header,
 .side-menu {
   position: fixed;
   inset: 0;
-  z-index: 1100;
+  z-index: 1200;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -340,11 +340,11 @@ body .header,
 .side-menu__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.5);
 }
 
 .dark .side-menu__backdrop {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
 }
 
 .side-menu__panel {
