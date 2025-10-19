@@ -1,0 +1,125 @@
+/* ==========================================================================
+   00 - DESIGN TOKENS & CUSTOM PROPERTIES (extracted)
+   ========================================================================== */
+
+/* Register custom properties for smooth animations */
+@property --primary-lightness {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --theme-bg-lightness {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 100%;
+}
+
+:root {
+  /* Color System - OKLCH for better color mixing */
+  --primary-hsl: 211 100% 50%;
+  --primary: #007bff !important;  /* Fallback to hex for compatibility */
+  --primary-rgb: 0, 123, 255;
+
+  /* Theme Colors */
+  --theme: #fff !important;
+  --theme-rgb: 255, 255, 255;
+  --secondary: #737373 !important;
+  --tertiary: #a3a3a3 !important;
+  --content: #404040 !important;
+  --code-bg: #f5f5f5 !important;
+  --border: #e5e5e5 !important;
+  --yellow: #ffd700;
+  --fg: var(--content);
+
+  /* Selection colors */
+  --selection-text-color: var(--primary);
+  --selection-underline-color: oklch(from var(--primary) calc(l + 0.2) calc(c * 0.6) h / 0.6);
+
+  /* Spacing Scale - 8pt grid system */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Typography - Enhanced font stacks with better fallback metrics */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: "New York", Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, 'Courier New', Monaco, "Cascadia Code",
+    "Source Code Pro", monospace;
+
+  /* Fluid Typography Scale tuned for 14px base */
+  --text-xs: clamp(11px, 0.75rem, 12px);   /* ~10.5–12px */
+  --text-sm: clamp(13px, 0.9rem, 14px);    /* ~12.6–14px */
+  --text-base: 14px;                       /* 14px */
+  --text-lg: clamp(16px, 1.1rem, 18px);    /* ~15.4–18px */
+  --text-xl: clamp(18px, 1.3rem, 20px);    /* ~18.2–20px */
+  --text-2xl: clamp(22px, 1.6rem, 24px);   /* ~22.4–24px */
+  --text-3xl: clamp(26px, 1.9rem, 28px);   /* ~26.6–28px */
+  --text-4xl: clamp(32px, 2.25rem, 34px);  /* ~31.5–34px */
+
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* Container Sizes */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 800px;
+  --container-xl: 1024px;
+
+  /* Off-canvas sidebar width for pushout (currently unused for push) */
+  --side-panel-width: clamp(220px, 85vw, 300px);
+}
+
+.dark {
+  --primary: #66b0ff !important;  /* Fallback to hex for compatibility */
+  --primary-rgb: 102, 176, 255;
+
+  --theme: #1a1a1a !important;
+  --theme-rgb: 26, 26, 26;
+  --secondary: #aaa !important;
+  --tertiary: #777 !important;
+  --content: #ddd !important;
+  --code-bg: #2d2d2d !important;
+  --border: #333 !important;
+  --fg: var(--content);
+
+  /* Enhanced selection for dark mode */
+  --selection-text-color: var(--primary);
+  --selection-underline-color: oklch(from var(--primary) l calc(c * 0.7) h / 0.7);
+
+  /* Adjusted shadows for dark mode */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6);
+}
+

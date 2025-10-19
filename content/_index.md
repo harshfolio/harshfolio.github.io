@@ -4,7 +4,7 @@ title: "Harsh Sharma"
 
 <div class="home-hero">
   <div class="home-hero-name">
-    <h1>Harsh<br class="mobile-only"> Sharma.</h1>
+    <h1>Harsh<span class="desktop-only">&nbsp;</span><br class="mobile-only">Sharma.</h1>
   </div>
   <div class="social-icons">
     <a href="https://github.com/harshfolio" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-icon">
