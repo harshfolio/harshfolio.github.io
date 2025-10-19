@@ -295,6 +295,29 @@ body .header,
   transition: transform var(--transition-fast);
 }
 
+/* Header theme toggle (icon-only, no border) */
+.header-theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 4px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--content);
+}
+
+.header-theme-toggle:hover { color: var(--primary); }
+.header-theme-toggle:focus { outline: none; }
+
+/* Show sun/moon based on theme */
+.header-theme-toggle .icon-sun { display: inline; }
+.header-theme-toggle .icon-moon { display: none; }
+body.dark .header-theme-toggle .icon-sun { display: none; }
+body.dark .header-theme-toggle .icon-moon { display: inline; }
+
 /* Inline desktop menu */
 .menu-inline {
   display: none;
