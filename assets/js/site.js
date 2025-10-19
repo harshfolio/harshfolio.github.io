@@ -18,8 +18,11 @@
   }
 
   function toggleTheme() {
-    const current = localStorage.getItem('pref-theme') || 'auto';
-    const next = current === 'light' ? 'dark' : current === 'dark' ? 'auto' : 'light';
+    // Toggle directly between light and dark for predictable behavior
+    const isDark = document.body.classList.contains('dark') ||
+      ((!localStorage.getItem('pref-theme') || localStorage.getItem('pref-theme') === 'auto') &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const next = isDark ? 'light' : 'dark';
     localStorage.setItem('pref-theme', next);
     applyTheme(next);
   }
@@ -30,7 +33,15 @@
 
   // Apply theme on load
   document.addEventListener('DOMContentLoaded', function () {
-    applyTheme(localStorage.getItem('pref-theme') || 'auto');
+    const pref = localStorage.getItem('pref-theme') || 'auto';
+    applyTheme(pref);
+    // If in auto mode, respond to system changes
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = () => {
+      if ((localStorage.getItem('pref-theme') || 'auto') === 'auto') applyTheme('auto');
+    };
+    if (mql.addEventListener) mql.addEventListener('change', onChange);
+    else if (mql.addListener) mql.addListener(onChange);
   });
 
   // HEADER: hide/show on scroll
@@ -153,4 +164,3 @@
     if (progressBar) progressBar.setAttribute('aria-valuenow', progressValue);
   });
 })();
-
