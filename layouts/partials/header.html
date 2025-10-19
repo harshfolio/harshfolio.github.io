@@ -11,8 +11,25 @@
     <nav class="nav">
         <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ site.Title }}" class="logo">
             <img src="{{ "images/asterisk.svg" | absURL }}" alt="*" class="logo-icon">
-            <span class="logo-text">Harsh</span>
+            <span class="logo-text">Harsh<span class="logo-break"><br></span> Sharma</span>
         </a>
+
+        {{/* Inline desktop menu (hidden on mobile) */}}
+        <ul class="menu-inline" role="menubar">
+          {{- if gt (len site.Menus.main) 0 -}}
+            {{- $currentPage := . -}}
+            {{- range site.Menus.main }}
+              {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL -}}
+              {{- $page_url := $currentPage.Permalink | absLangURL -}}
+              <li role="none">
+                <a role="menuitem" href="{{ .URL | absLangURL }}" class="menu-inline__link{{ if eq $menu_item_url $page_url }} is-active{{ end }}">{{ .Name }}</a>
+              </li>
+            {{- end -}}
+          {{- else -}}
+            <li role="none"><a role="menuitem" href="{{ "" | absLangURL }}" class="menu-inline__link">Home</a></li>
+            <li role="none"><a role="menuitem" href="{{ "posts" | absLangURL }}" class="menu-inline__link">Blog</a></li>
+          {{- end -}}
+        </ul>
 
         <button id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu" class="menu-toggle">
             <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -27,7 +44,13 @@
       <div class="side-menu__backdrop" data-close="true"></div>
       <aside class="side-menu__panel" role="dialog" aria-modal="true" aria-labelledby="side-menu-title">
         <div class="side-menu__header">
-          <span id="side-menu-title" class="side-menu__title">{{ site.Title }}</span>
+          <span id="side-menu-title" class="side-menu__title">
+            {{- if eq site.Title "Harsh Sharma" -}}
+              Harsh<span class="logo-break"><br></span> Sharma
+            {{- else -}}
+              {{ site.Title }}
+            {{- end -}}
+          </span>
           <button id="menu-close" class="side-menu__close" aria-label="Close menu">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
@@ -119,6 +142,42 @@
               first.focus();
             }
           });
+        })();
+    </script>
+
+    <script>
+        // Header hide/show on scroll: hide while scrolling down, show on scroll up or when scrolling stops
+        (function() {
+          const header = document.querySelector('.header');
+          if (!header) return;
+
+          let lastY = window.scrollY;
+          let scrollEndTimer = null;
+
+          function onScroll() {
+            const y = window.scrollY;
+            const delta = y - lastY;
+            lastY = y;
+
+            const sideMenu = document.getElementById('side-menu');
+            const menuOpen = sideMenu && sideMenu.classList.contains('open');
+
+            if (!menuOpen) {
+              if (delta > 10 && y > 50) {
+                header.classList.add('header--hidden');
+              } else if (delta < -10) {
+                header.classList.remove('header--hidden');
+              }
+            }
+
+            // Reveal header shortly after scrolling stops
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(() => {
+              header.classList.remove('header--hidden');
+            }, 200);
+          }
+
+          window.addEventListener('scroll', onScroll, { passive: true });
         })();
     </script>
 </header>

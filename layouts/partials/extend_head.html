@@ -8,13 +8,10 @@
 <style>
   /* Critical layout CSS only - variables are in custom.css */
   body{margin:0}
-  .header{background:var(--theme)}
-  .nav{display:flex;justify-content:space-between;align-items:center}
-  .main{max-width:800px;margin:0 auto}
   /* Ensure skip link stays off-screen until focused to avoid FOUC */
   .skip-to-main{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
   .skip-to-main:focus{left:0;top:0;width:auto;height:auto;padding:8px 12px;background:#007bff;color:#fff;z-index:1000}
-  </style>
+</style>
 
 {{- /* Resource hints for external resources */ -}}
 {{ if .Params.math }}

@@ -192,18 +192,23 @@ code ::selection {
 
 /* Header Layout */
 .header {
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  background: var(--theme) !important;
+  border-bottom: none;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
+  transform: translateY(0);
+  transition: transform var(--transition-normal);
 }
 
 .dark .header {
-  background: rgba(26, 26, 26, 0.8) !important;
+  background: var(--theme) !important;
+}
+
+/* Hide-on-scroll behavior */
+.header--hidden {
+  transform: translateY(-100%);
 }
 
 .nav {
@@ -241,6 +246,15 @@ code ::selection {
   transition: opacity var(--transition-fast);
 }
 
+/* Mobile: allow name to break into two lines */
+.logo-break { display: inline; }
+
+/* Desktop: keep name on one line and hide forced break */
+@media (min-width: 768px) {
+  .logo-text { white-space: nowrap; }
+  .logo-break { display: none; }
+}
+
 .logo:hover .logo-icon {
   transform: rotate(45deg);
 }
@@ -254,7 +268,7 @@ code ::selection {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 8px;
   color: var(--content);
   transition: color var(--transition-fast);
 }
@@ -267,6 +281,34 @@ code ::selection {
   display: block;
   stroke: currentColor;
   transition: transform var(--transition-fast);
+}
+
+/* Inline desktop menu */
+.menu-inline {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.menu-inline__link {
+  color: var(--content);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.menu-inline__link:hover {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.menu-inline__link.is-active {
+  color: var(--primary);
 }
 
 /* Side Menu (Off-canvas) */
@@ -330,6 +372,10 @@ code ::selection {
   color: var(--content);
 }
 
+@media (min-width: 768px) {
+  .side-menu__title { white-space: nowrap; }
+}
+
 .side-menu__close {
   background: transparent;
   border: none;
@@ -368,6 +414,12 @@ code ::selection {
 /* Prevent body scroll when side menu open */
 .no-scroll {
   overflow: hidden;
+}
+
+/* Responsive: show inline menu on desktop, hide hamburger */
+@media (min-width: 768px) {
+  .menu-inline { display: flex; }
+  .menu-toggle { display: none; }
 }
 
 /* Home Hero Section */
