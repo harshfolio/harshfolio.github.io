@@ -487,6 +487,19 @@ body.dark .side-menu__theme-btn .icon-moon { display: inline; }
   background: var(--code-bg);
 }
 
+/* Icon size for social buttons */
+.social-btn svg { width: 22px; height: 22px; }
+
+/* Brand accent hovers */
+.social-btn--github:hover { color: #24292f; border-color: #24292f; }
+.social-btn--linkedin:hover { color: #0A66C2; border-color: #0A66C2; }
+.social-btn--x:hover, .social-btn--twitter:hover { color: #000000; border-color: #000000; }
+
+/* In dark mode, keep contrast by not changing background drastically */
+.dark .social-btn--github:hover { color: #ffffff; background: #24292f; border-color: #24292f; }
+.dark .social-btn--linkedin:hover { color: #ffffff; background: #0A66C2; border-color: #0A66C2; }
+.dark .social-btn--x:hover, .dark .social-btn--twitter:hover { color: #000000; background: #ffffff; border-color: #ffffff; }
+
 /* Prevent body scroll when side menu open */
 .no-scroll {
   overflow: hidden;
