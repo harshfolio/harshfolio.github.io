@@ -393,6 +393,8 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   border-top: 1px solid var(--border);
   display: flex;
   gap: var(--spacing-md);
+  justify-content: center;
+  align-items: center;
 }
 
 .social-btn {
