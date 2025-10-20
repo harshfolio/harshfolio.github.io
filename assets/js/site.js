@@ -163,4 +163,14 @@
     const progressBar = document.querySelector('.year-progress-bar');
     if (progressBar) progressBar.setAttribute('aria-valuenow', progressValue);
   });
+
+  // GRID OVERLAY TOGGLE (Dev helper)
+  // Press Ctrl+Shift+G (or Cmd+Shift+G on Mac) to toggle baseline grid
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'G') {
+      e.preventDefault();
+      document.body.classList.toggle('show-grid');
+      console.log('Baseline grid overlay:', document.body.classList.contains('show-grid') ? 'ON' : 'OFF');
+    }
+  });
 })();

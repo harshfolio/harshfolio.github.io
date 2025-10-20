@@ -12,6 +12,32 @@
 /* Base font sizing */
 html { font-size: 14px; }
 
+/* Body - Notebook paper background */
+body {
+  background:
+    /* Subtle paper texture */
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="300" height="300" filter="url(%23noise)" opacity="0.03"/></svg>'),
+    /* Warm gradient */
+    linear-gradient(to bottom, var(--theme) 0%, color-mix(in oklch, var(--theme), var(--code-bg) 30%) 100%);
+  background-attachment: fixed;
+}
+
+/* Grid overlay - toggle with .show-grid on body (dev helper) */
+body.show-grid::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(44, 95, 141, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 95, 141, 0.08) 1px, transparent 1px);
+  background-size: var(--grid-base) var(--grid-base);
+  pointer-events: none;
+  z-index: 9999;
+}
+
 .main,
 .post-content {
   font-family: var(--font-serif);
@@ -31,33 +57,16 @@ h1, h2, h3, h4, h5, h6,
   text-wrap: balance; /* Better heading wrapping */
 }
 
-/* Enhanced Text Selection */
+/* Enhanced Text Selection - Highlighter effect */
 ::selection {
-  color: var(--selection-text-color);
-  background-color: transparent;
-  text-decoration: underline wavy transparent;
-  -webkit-text-decoration: underline wavy transparent;
-  text-decoration-thickness: 1px;
+  background: rgba(244, 232, 193, 0.6);  /* Warm yellow highlighter */
+  color: var(--content);
+  text-decoration: none;
 }
 
-/* Apply underline color to text elements */
-p::selection,
-li::selection,
-h1::selection,
-h2::selection,
-h3::selection,
-h4::selection,
-h5::selection,
-h6::selection,
-td::selection,
-th::selection,
-figcaption::selection,
-span::selection,
-a::selection,
-strong::selection,
-em::selection {
-  text-decoration-color: var(--selection-underline-color);
-  -webkit-text-decoration-color: var(--selection-underline-color);
+.dark ::selection {
+  background: rgba(244, 232, 193, 0.2);
+  color: var(--content);
 }
 
 /* Normal selection for code */
@@ -442,7 +451,7 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 
 /* Home Hero Section */
 .home-hero {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-3xl);  /* 64px - grid aligned */
   padding: 0;
 }
 
@@ -455,8 +464,8 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
   font-family: 'Plus Jakarta Sans', var(--font-sans);
   font-size: 2.5rem;
   font-weight: 600;
-  line-height: 1.2;
-  margin: 0 0 1rem 0;
+  line-height: calc(var(--baseline) * 2);  /* 48px - 2× baseline */
+  margin: 0 0 var(--baseline) 0;  /* 24px - 1× baseline */
   padding: 0;
   color: var(--primary);
   letter-spacing: -0.02em;
@@ -536,33 +545,33 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 .home-content {
   max-width: 800px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: var(--spacing-xl) 0;
 
   & h2 {
     font-size: var(--text-2xl);
     margin-bottom: var(--spacing-lg);
     margin-top: 0;
     font-weight: 400;
-    line-height: var(--leading-tight);
+    line-height: var(--baseline);  /* 24px - baseline aligned */
   }
 
   & p {
     font-family: var(--font-serif);
     font-size: 1.1rem;
-    line-height: 1.6;
+    line-height: var(--baseline);  /* 24px - baseline aligned */
     color: var(--content);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--baseline);  /* 24px spacing */
   }
 
   & ul {
     list-style-type: disc;
-    margin-left: 1.5rem;
-    margin-bottom: 2rem;
+    margin-left: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
     padding-left: 0;
 
     & li {
-      margin-bottom: 1rem;
-      line-height: 1.6;
+      margin-bottom: var(--spacing-md);  /* 16px */
+      line-height: var(--baseline);  /* 24px - baseline aligned */
       color: var(--content);
       font-size: var(--text-base);
     }
@@ -871,6 +880,20 @@ body.dark #moon {
     margin-bottom: var(--spacing-lg);
     font-weight: 600;
     font-style: italic;
+    position: relative;
+    padding-bottom: calc(var(--baseline) / 2);  /* 12px - half baseline */
+  }
+
+  /* Notebook ruled line under heading */
+  & > h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+    opacity: 0.6;
   }
 }
 

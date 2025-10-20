@@ -16,21 +16,30 @@
 }
 
 :root {
-  /* Color System - OKLCH for better color mixing */
-  --primary-hsl: 211 100% 50%;
-  --primary: #007bff !important;  /* Fallback to hex for compatibility */
-  --primary-rgb: 0, 123, 255;
+  /* Grid System - Baseline grid for notebook aesthetic */
+  --grid-base: 8px;
+  --baseline: 24px;  /* Vertical rhythm - 3 × 8px */
 
-  /* Theme Colors */
-  --theme: #fff !important;
-  --theme-rgb: 255, 255, 255;
-  --secondary: #737373 !important;
-  --tertiary: #a3a3a3 !important;
-  --content: #404040 !important;
-  --code-bg: #f5f5f5 !important;
-  --border: #e5e5e5 !important;
-  --yellow: #ffd700;
+  /* Color System - Warm notebook palette */
+  --primary-hsl: 211 100% 50%;
+  --primary: #2c5f8d !important;  /* Deeper ink blue */
+  --primary-rgb: 44, 95, 141;
+
+  /* Theme Colors - Warm paper tones */
+  --theme: #fdfcfb !important;  /* Cream white, not pure white */
+  --theme-rgb: 253, 252, 251;
+  --secondary: #6b6560 !important;  /* Warmer gray */
+  --tertiary: #a39e99 !important;   /* Warm tertiary */
+  --content: #3d3935 !important;    /* Warm near-black */
+  --code-bg: #f5f3f0 !important;    /* Warm light gray */
+  --border: #e8e6e1 !important;     /* Softer warm border */
+  --yellow: #f4e8c1;                /* Soft highlighter yellow */
   --fg: var(--content);
+
+  /* Notebook accent colors */
+  --accent-pink: #ffd6e0;
+  --accent-mint: #d4edda;
+  --accent-lavender: #e7e3fc;
 
   /* Selection colors */
   --selection-text-color: var(--primary);
@@ -99,17 +108,23 @@
 }
 
 .dark {
-  --primary: #66b0ff !important;  /* Fallback to hex for compatibility */
+  --primary: #66b0ff !important;  /* Lighter blue for dark mode */
   --primary-rgb: 102, 176, 255;
 
-  --theme: #1a1a1a !important;
-  --theme-rgb: 26, 26, 26;
-  --secondary: #aaa !important;
-  --tertiary: #777 !important;
-  --content: #ddd !important;
-  --code-bg: #2d2d2d !important;
-  --border: #333 !important;
+  /* Dark mode - warm dark tones instead of pure black */
+  --theme: #1a1918 !important;      /* Warm dark */
+  --theme-rgb: 26, 25, 24;
+  --secondary: #a8a19a !important;  /* Warm gray */
+  --tertiary: #7a7571 !important;   /* Warmer tertiary */
+  --content: #e6e3df !important;    /* Warm light text */
+  --code-bg: #252321 !important;    /* Warm dark code bg */
+  --border: #3d3a36 !important;     /* Warm border */
   --fg: var(--content);
+
+  /* Muted accents for dark mode */
+  --accent-pink: #4a3a3e;
+  --accent-mint: #3a4a3e;
+  --accent-lavender: #3e3a4a;
 
   /* Enhanced selection for dark mode */
   --selection-text-color: var(--primary);
