@@ -14,12 +14,8 @@ html { font-size: 14px; }
 
 /* Body - Notebook paper background */
 body {
-  background:
-    /* Subtle paper texture */
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="300" height="300" filter="url(%23noise)" opacity="0.03"/></svg>'),
-    /* Warm gradient */
-    linear-gradient(to bottom, var(--theme) 0%, color-mix(in oklch, var(--theme), var(--code-bg) 30%) 100%);
-  background-attachment: fixed;
+  background: var(--theme);
+  background-image: linear-gradient(to bottom, var(--theme) 0%, var(--code-bg) 100%);
 }
 
 /* Grid overlay - toggle with .show-grid on body (dev helper) */
@@ -384,7 +380,7 @@ body.dark .header-theme-toggle .icon-moon { display: inline; }
 
 /* Focus styles for accessibility */
 :where(a, button, .btn, .post-card, .menu-inline__link, .side-menu__link):focus-visible {
-  outline: 2px solid color-mix(in oklab, var(--primary), black 15%);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -802,14 +798,14 @@ body.dark #moon {
   background: var(--primary);
   color: #fff;
   border: 1.5px solid var(--primary);
-  box-shadow: 0 3px 0 0 color-mix(in oklab, var(--primary), black 20%);
+  box-shadow: 0 3px 0 0 #1a3d5c;
 
   &:hover {
-    box-shadow: 0 5px 0 0 color-mix(in oklab, var(--primary), black 20%);
+    box-shadow: 0 5px 0 0 #1a3d5c;
   }
 
   &:active {
-    box-shadow: 0 1px 0 0 color-mix(in oklab, var(--primary), black 20%);
+    box-shadow: 0 1px 0 0 #1a3d5c;
   }
 }
 
@@ -1680,7 +1676,7 @@ a.footnote-backref {
 
 .reading-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), color-mix(in oklch, var(--primary), white 20%));
+  background: linear-gradient(90deg, var(--primary), #4a89c0);
   width: 0%;
   transition: width 0.1s ease-out;
   box-shadow: 0 0 10px var(--primary);
