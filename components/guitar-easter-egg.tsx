@@ -7,7 +7,11 @@ export function GuitarEasterEgg() {
     const playGuitarChord = () => {
       // Create AudioContext for generating guitar chord sound
       const AudioContextClass =
-        window.AudioContext || (window as Window & { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext
+        window.AudioContext ||
+        (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+
+      if (!AudioContextClass) return
+
       const audioContext = new AudioContextClass()
       const now = audioContext.currentTime
 
