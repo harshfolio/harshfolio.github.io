@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Lora, JetBrains_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans, Lora, JetBrains_Mono, Caveat } from 'next/font/google'
 
 export const fontSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -16,4 +16,10 @@ export const fontMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   weight: ['400', '500'],
+})
+
+export const fontCaveat = Caveat({
+  subsets: ['latin'],
+  variable: '--font-caveat',
+  weight: ['400', '600'],
 })

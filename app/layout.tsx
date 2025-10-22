@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { fontSans, fontSerif, fontMono } from '@/lib/fonts'
+import { fontSans, fontSerif, fontMono, fontCaveat } from '@/lib/fonts'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} font-sans antialiased`}
+        className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} ${fontCaveat.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

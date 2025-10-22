@@ -60,6 +60,10 @@
 
     /* Fonts - These are now set as CSS variables by Next.js font loader */
     /* Values are applied via className in app/layout.tsx */
+
+    /* Text Selection Colors */
+    --selection-text-color: hsl(211 100% 50%);
+    --selection-underline-color: hsl(211 100% 50%);
   }
 
   .dark {
@@ -83,6 +87,10 @@
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6);
+
+    /* Text Selection Colors for dark mode */
+    --selection-text-color: hsl(211 100% 70%);
+    --selection-underline-color: hsl(211 100% 70%);
   }
 }
 
@@ -91,10 +99,53 @@
     @apply border-border;
   }
 
+  /* Base font size matching Hugo */
+  html {
+    font-size: 14px;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;
+  }
+
+  /* Enhanced Text Selection - matching Hugo design */
+  ::selection {
+    color: var(--selection-text-color);
+    background-color: transparent;
+    text-decoration: underline wavy transparent;
+    -webkit-text-decoration: underline wavy transparent;
+    text-decoration-thickness: 1px;
+  }
+
+  /* Apply underline color to text elements */
+  p::selection,
+  li::selection,
+  h1::selection,
+  h2::selection,
+  h3::selection,
+  h4::selection,
+  h5::selection,
+  h6::selection,
+  td::selection,
+  th::selection,
+  figcaption::selection,
+  span::selection,
+  a::selection,
+  strong::selection,
+  em::selection {
+    text-decoration-color: var(--selection-underline-color);
+    -webkit-text-decoration-color: var(--selection-underline-color);
+  }
+
+  /* Normal selection for code */
+  pre ::selection,
+  code ::selection {
+    color: inherit;
+    background-color: Highlight;
+    text-decoration: none;
+    -webkit-text-decoration: none;
   }
 }

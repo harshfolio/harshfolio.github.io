@@ -85,6 +85,84 @@ const config: Config = {
           css: {
             maxWidth: '72ch',
             color: 'hsl(var(--foreground))',
+            fontFamily: 'var(--font-serif)',
+            lineHeight: '1.6',
+            p: {
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'var(--text-base)',
+              lineHeight: '1.6',
+              marginTop: '0',
+              marginBottom: '1rem',
+              hyphens: 'auto',
+            },
+            h1: {
+              fontFamily: 'var(--font-serif)',
+              fontWeight: '400',
+              lineHeight: 'var(--leading-tight)',
+            },
+            h2: {
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'var(--text-xl)',
+              fontWeight: '400',
+              marginTop: 'var(--spacing-2xl)',
+              marginBottom: 'var(--spacing-md)',
+              lineHeight: 'var(--leading-tight)',
+            },
+            h3: {
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'var(--text-lg)',
+              fontWeight: '400',
+              marginTop: 'var(--spacing-xl)',
+              marginBottom: 'var(--spacing-sm)',
+              lineHeight: 'var(--leading-tight)',
+            },
+            h4: {
+              fontFamily: 'var(--font-serif)',
+              fontWeight: '400',
+              lineHeight: 'var(--leading-tight)',
+            },
+            ul: {
+              marginTop: 'var(--spacing-md)',
+              marginBottom: 'var(--spacing-md)',
+              paddingLeft: 'var(--spacing-xl)',
+              lineHeight: 'var(--leading-normal)',
+            },
+            ol: {
+              marginTop: 'var(--spacing-md)',
+              marginBottom: 'var(--spacing-md)',
+              paddingLeft: 'var(--spacing-xl)',
+              lineHeight: 'var(--leading-normal)',
+            },
+            li: {
+              marginTop: 'var(--spacing-sm)',
+              marginBottom: 'var(--spacing-sm)',
+            },
+            strong: {
+              fontWeight: '600',
+              color: 'hsl(var(--foreground))',
+            },
+            code: {
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'var(--text-base)',
+              backgroundColor: 'hsl(var(--muted))',
+              padding: 'var(--spacing-xxs) var(--spacing-sm)',
+              borderRadius: 'var(--radius)',
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            pre: {
+              backgroundColor: 'hsl(var(--muted))',
+              borderRadius: 'var(--radius)',
+              padding: 'var(--spacing-md)',
+            },
+            'pre code': {
+              padding: '0',
+              backgroundColor: 'transparent',
+            },
             a: {
               color: 'hsl(var(--primary))',
               textDecoration: 'none',

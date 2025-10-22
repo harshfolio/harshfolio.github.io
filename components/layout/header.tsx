@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { Menu } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
@@ -13,9 +14,16 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50 w-full border-b-2 border-border bg-background">
         <nav className="container mx-auto flex items-center justify-between px-6 py-4">
-          <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <span className="font-[family-name:var(--font-serif)] text-2xl font-semibold text-primary">
-              Harsh Sharma
+          <Link href="/" className="group flex items-center gap-0 transition-opacity">
+            <Image
+              src="/images/asterisk.svg"
+              alt="*"
+              width={24}
+              height={24}
+              className="mr-2 transition-transform group-hover:rotate-45"
+            />
+            <span className="font-[family-name:var(--font-caveat)] text-[26px] font-semibold text-primary transition-opacity group-hover:opacity-80">
+              Harsh
             </span>
           </Link>
 
