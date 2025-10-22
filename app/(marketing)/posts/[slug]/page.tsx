@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { ReadingProgress } from '@/components/reading-progress'
+import { formatDate } from '@/lib/utils/date'
 import { posts } from '#site/content'
 
 interface PostPageProps {
@@ -69,13 +70,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <h1 className="mb-4 text-4xl font-semibold">{post.title}</h1>
           {post.description && <p className="text-lg text-muted-foreground">{post.description}</p>}
           <div className="mt-4 flex items-center gap-2 font-mono text-sm text-muted-foreground">
-            <time dateTime={post.date}>
-              {new Date(post.date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
           </div>
           {post.tags && post.tags.length > 0 && (
             <div className="mt-4 flex flex-wrap gap-2">

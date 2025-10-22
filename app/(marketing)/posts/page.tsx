@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { PostCard } from '@/components/post-card'
 import { posts } from '#site/content'
 
 export const metadata: Metadata = {
@@ -25,39 +23,7 @@ export default function BlogPage() {
 
       <div className="space-y-4">
         {publishedPosts.map((post) => (
-          <Link key={post.slug} href={`/posts/${post.slugAsParams}`}>
-            <Card className="transition-all hover:-translate-y-1 hover:border-muted-foreground">
-              <CardHeader>
-                {post.featured && (
-                  <Badge variant="featured" className="mb-2 w-fit">
-                    Featured
-                  </Badge>
-                )}
-                <CardTitle className="transition-colors hover:text-primary">{post.title}</CardTitle>
-                {post.description && (
-                  <CardDescription className="mt-2">{post.description}</CardDescription>
-                )}
-                <div className="mt-2 flex items-center gap-2 font-mono text-xs text-muted-foreground">
-                  <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </div>
-                {post.tags && post.tags.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <Badge key={tag} variant="outline">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-              </CardHeader>
-            </Card>
-          </Link>
+          <PostCard key={post.slug} post={post} prefetch={true} />
         ))}
       </div>
     </div>

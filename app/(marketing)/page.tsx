@@ -1,10 +1,12 @@
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { Github, Linkedin, Twitter } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { GuitarEasterEgg } from '@/components/guitar-easter-egg'
+import { PostCard } from '@/components/post-card'
 import { posts } from '#site/content'
+
+// Lazy load easter egg - not critical for initial render
+const GuitarEasterEgg = dynamic(() => import('@/components/guitar-easter-egg').then((mod) => ({ default: mod.GuitarEasterEgg })))
 
 export default function HomePage() {
   const publishedPosts = posts
@@ -107,50 +109,14 @@ export default function HomePage() {
         <h2 className="mb-6 text-2xl font-semibold italic">Writing</h2>
         <div className="space-y-4">
           {publishedPosts.map((post) => (
-            <Link key={post.slug} href={`/posts/${post.slugAsParams}`}>
-              <Card className="transition-all hover:-translate-y-1 hover:border-muted-foreground">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      {post.featured && (
-                        <Badge variant="featured" className="mb-2">
-                          Featured
-                        </Badge>
-                      )}
-                      <CardTitle className="transition-colors hover:text-primary">
-                        {post.title}
-                      </CardTitle>
-                    </div>
-                  </div>
-                  {post.description && (
-                    <CardDescription className="mt-2">{post.description}</CardDescription>
-                  )}
-                  <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-                    <time dateTime={post.date}>
-                      {new Date(post.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                  </div>
-                  {post.tags && post.tags.length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {post.tags.map((tag) => (
-                        <Badge key={tag} variant="outline">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                </CardHeader>
-              </Card>
-            </Link>
+            <PostCard key={post.slug} post={post} prefetch={true} />
           ))}
         </div>
         <div className="mt-6 flex justify-center">
           <Button variant="outline" size="md" asChild>
-            <Link href="/posts">View all posts</Link>
+            <Link href="/posts" prefetch={false}>
+              View all posts
+            </Link>
           </Button>
         </div>
       </section>
