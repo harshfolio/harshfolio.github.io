@@ -49,7 +49,7 @@ export default function HomePage() {
 
         <div className="prose prose-lg max-w-none font-serif">
           <p>
-            I'm currently a Product Manager at Clinikally (YC S22), leading the e-pharmacy & digital
+            I&apos;m currently a Product Manager at Clinikally (YC S22), leading the e-pharmacy & digital
             health platform used by 3 million users each month. Previously I was a Public Health
             Researcher & Social Scientist. Outside of core product work, I also:
           </p>
@@ -57,7 +57,7 @@ export default function HomePage() {
             <li>
               Shipped{' '}
               <a href="https://clara.clinikally.com/" target="_blank" rel="noopener noreferrer">
-                Clara, India's first clinical-grade AI skin analysis
+                Clara, India&apos;s first clinical-grade AI skin analysis
               </a>{' '}
               that processes 14 parameters in &lt;5 seconds
             </li>
@@ -81,7 +81,7 @@ export default function HomePage() {
             </li>
           </ul>
           <p>
-            I bring a researcher's rigor to product decisions. Perpetual noob that's currently
+            I bring a researcher&apos;s rigor to product decisions. Perpetual noob that&apos;s currently
             learning to play the guitar.
           </p>
         </div>
