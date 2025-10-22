@@ -1,4 +1,9 @@
 {
+  "git": {
+    "deploymentEnabled": {
+      "gh-pages": false
+    }
+  },
   "buildCommand": "bun run build",
   "devCommand": "bun run dev",
   "installCommand": "bun install",
