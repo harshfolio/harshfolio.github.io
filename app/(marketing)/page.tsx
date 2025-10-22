@@ -17,8 +17,8 @@ export default function HomePage() {
     <div className="container mx-auto max-w-4xl px-6 py-12">
       <GuitarEasterEgg />
       {/* Hero Section */}
-      <div className="mb-12">
-        <h1 className="mb-4 font-sans text-5xl font-semibold leading-tight text-primary md:text-6xl">
+      <div className="home-hero mb-12">
+        <h1 className="mb-4 font-sans font-semibold text-primary">
           Harsh<span className="hidden md:inline">&nbsp;</span>
           <br className="md:hidden" />
           Sharma.
@@ -51,7 +51,7 @@ export default function HomePage() {
           </a>
         </div>
 
-        <div className="home-content prose prose-lg max-w-none font-serif">
+        <div className="home-content max-w-none font-serif">
           <p>
             I&apos;m currently a Product Manager at Clinikally (YC S22), leading the e-pharmacy &
             digital health platform used by 3 million users each month. Previously I was a Public

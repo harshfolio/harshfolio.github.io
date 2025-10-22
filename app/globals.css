@@ -149,4 +149,50 @@
     text-decoration: none;
     -webkit-text-decoration: none;
   }
+
+  /* Home hero heading - matching Hugo */
+  .home-hero h1 {
+    font-size: 2.5rem; /* 35px at 14px base, matches Hugo exactly */
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 768px) {
+    .home-hero h1 {
+      font-size: 3rem; /* Slightly larger on desktop */
+    }
+  }
+
+  /* Home page content styling */
+  .home-content p {
+    font-size: 1.125rem; /* 18px at 16px base = closer to Hugo */
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: hsl(var(--foreground));
+  }
+
+  .home-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 2rem;
+    padding-left: 0;
+  }
+
+  .home-content li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1.125rem; /* Match paragraph size */
+  }
+
+  .home-content a {
+    color: hsl(var(--primary));
+    text-decoration: none;
+    border-bottom: 1px solid hsl(var(--primary));
+    transition: opacity var(--transition-fast);
+  }
+
+  .home-content a:hover {
+    opacity: 0.7;
+  }
 }
