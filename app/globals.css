@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Colors from Hugo tokens - converted from hex to HSL */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 25%;
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 25%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 211 100% 50%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 87%;
+    --primary: 211 100% 69%;
+    --primary-foreground: 0 0% 10%;
+    --secondary: 0 0% 67%;
+    --secondary-foreground: 0 0% 87%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 47%;
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 87%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 211 100% 69%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
