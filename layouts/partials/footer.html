@@ -1,31 +1,58 @@
 <footer class="footer">
-    {{- if (not site.Params.disableThemeToggle) }}
-    <div class="footer-theme-toggle">
-        <button id="theme-toggle" accesskey="t" title="Toggle theme" aria-label="Toggle dark mode" onclick="toggleTheme()">
-            <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                fill="currentColor">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="12" cy="12" r="4"></circle>
-                <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-            </svg>
-        </button>
-    </div>
-    <!-- Theme logic moved to assets/js/site.js -->
-    {{- end }}
+  {{- if (not site.Params.disableThemeToggle) }}
+  <div class="footer-theme-toggle">
+    <button
+      id="theme-toggle"
+      accesskey="t"
+      title="Toggle theme"
+      aria-label="Toggle dark mode"
+      onclick="toggleTheme()"
+    >
+      <svg
+        id="moon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+      <svg
+        id="sun"
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="4"></circle>
+        <path
+          d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+        ></path>
+      </svg>
+    </button>
+  </div>
+  <!-- Theme logic moved to assets/js/site.js -->
+  {{- end }}
 
-    <div class="year-progress" role="status" aria-label="Year progress indicator">
-        <div class="year-progress-label">
-            <span id="year-percentage">0</span>% of {{ now.Year }}
-        </div>
-        <div class="year-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-            <div class="year-progress-fill" id="year-progress-fill"></div>
-        </div>
+  <div class="year-progress" role="status" aria-label="Year progress indicator">
+    <div class="year-progress-label"><span id="year-percentage">0</span>% of {{ now.Year }}</div>
+    <div
+      class="year-progress-bar"
+      role="progressbar"
+      aria-valuenow="0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <div class="year-progress-fill" id="year-progress-fill"></div>
     </div>
-    <span>© {{ now.Year }} Harsh Sharma</span>
+  </div>
+  <span>© {{ now.Year }} Harsh Sharma</span>
 </footer>
 
 <!-- Year progress logic moved to assets/js/site.js -->

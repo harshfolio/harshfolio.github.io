@@ -14,7 +14,7 @@ export default function HomePage() {
     <div className="container mx-auto max-w-4xl px-6 py-12">
       {/* Hero Section */}
       <div className="mb-12">
-        <h1 className="mb-4 text-5xl font-semibold leading-tight text-primary md:text-6xl font-sans">
+        <h1 className="mb-4 font-sans text-5xl font-semibold leading-tight text-primary md:text-6xl">
           Harsh<span className="hidden md:inline">&nbsp;</span>
           <br className="md:hidden" />
           Sharma.
@@ -49,9 +49,9 @@ export default function HomePage() {
 
         <div className="prose prose-lg max-w-none font-serif">
           <p>
-            I&apos;m currently a Product Manager at Clinikally (YC S22), leading the e-pharmacy & digital
-            health platform used by 3 million users each month. Previously I was a Public Health
-            Researcher & Social Scientist. Outside of core product work, I also:
+            I&apos;m currently a Product Manager at Clinikally (YC S22), leading the e-pharmacy &
+            digital health platform used by 3 million users each month. Previously I was a Public
+            Health Researcher & Social Scientist. Outside of core product work, I also:
           </p>
           <ul>
             <li>
@@ -63,9 +63,7 @@ export default function HomePage() {
             </li>
             <li>
               Built our entire{' '}
-              <Link href="/posts/building-elt-pipeline">
-                ELT data pipeline from scratch
-              </Link>{' '}
+              <Link href="/posts/building-elt-pipeline">ELT data pipeline from scratch</Link>{' '}
               (BigQuery and dbt), Deployed & Setup Metabase for visualisation
             </li>
             <li>
@@ -81,8 +79,8 @@ export default function HomePage() {
             </li>
           </ul>
           <p>
-            I bring a researcher&apos;s rigor to product decisions. Perpetual noob that&apos;s currently
-            learning to play the guitar.
+            I bring a researcher&apos;s rigor to product decisions. Perpetual noob that&apos;s
+            currently learning to play the guitar.
           </p>
         </div>
 
@@ -108,7 +106,7 @@ export default function HomePage() {
         <div className="space-y-4">
           {publishedPosts.map((post) => (
             <Link key={post.slug} href={`/posts/${post.slugAsParams}`}>
-              <Card className="transition-all hover:border-muted-foreground hover:-translate-y-1">
+              <Card className="transition-all hover:-translate-y-1 hover:border-muted-foreground">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">

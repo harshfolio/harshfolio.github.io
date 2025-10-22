@@ -5,10 +5,7 @@ import { cn } from '@/lib/utils'
 const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
-      className={cn(
-        'mt-8 scroll-m-20 text-4xl font-semibold tracking-tight',
-        className
-      )}
+      className={cn('mt-8 scroll-m-20 text-4xl font-semibold tracking-tight', className)}
       {...props}
     />
   ),
@@ -23,19 +20,13 @@ const components = {
   ),
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
-      className={cn(
-        'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight',
-        className
-      )}
+      className={cn('mt-8 scroll-m-20 text-2xl font-semibold tracking-tight', className)}
       {...props}
     />
   ),
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
-      className={cn(
-        'mt-6 scroll-m-20 text-xl font-semibold tracking-tight',
-        className
-      )}
+      className={cn('mt-6 scroll-m-20 text-xl font-semibold tracking-tight', className)}
       {...props}
     />
   ),
@@ -71,10 +62,7 @@ const components = {
   ),
   pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
     <pre
-      className={cn(
-        'mb-4 mt-6 overflow-x-auto rounded-lg border bg-muted p-4',
-        className
-      )}
+      className={cn('mb-4 mt-6 overflow-x-auto rounded-lg border bg-muted p-4', className)}
       {...props}
     />
   ),
@@ -88,11 +76,7 @@ const components = {
     />
   ),
   Image: ({ className, alt, ...props }: React.ComponentProps<typeof Image>) => (
-    <Image
-      className={cn('rounded-lg border', className)}
-      alt={alt}
-      {...props}
-    />
+    <Image className={cn('rounded-lg border', className)} alt={alt} {...props} />
   ),
 }
 
@@ -103,7 +87,7 @@ interface MdxProps {
 export function Mdx({ code }: MdxProps) {
   return (
     <div
-      className="prose prose-lg dark:prose-invert max-w-none font-serif"
+      className="prose prose-lg max-w-none font-serif dark:prose-invert"
       dangerouslySetInnerHTML={{ __html: code }}
     />
   )

@@ -4,7 +4,6 @@ import { build } from 'velite'
 const nextConfig: NextConfig = {
   // Performance
   reactStrictMode: true,
-  swcMinify: true,
 
   // Image optimization
   images: {

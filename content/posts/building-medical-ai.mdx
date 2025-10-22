@@ -1,10 +1,10 @@
 ---
-title: "Building a Medical AI Assistant: The Paradoxes That Shaped the Architecture"
-description: "A deep dive into the product thinking behind a medical AI assistant, exploring the paradoxes of safety, personalization, and simplicity."
+title: 'Building a Medical AI Assistant: The Paradoxes That Shaped the Architecture'
+description: 'A deep dive into the product thinking behind a medical AI assistant, exploring the paradoxes of safety, personalization, and simplicity.'
 date: 2025-10-18
 published: true
 featured: true
-tags: ["Product Management", "AI", "Healthcare"]
+tags: ['Product Management', 'AI', 'Healthcare']
 ---
 
 ## The Signal
@@ -114,12 +114,14 @@ Medical AI has this trap where reducing friction (instant answers, no questions,
 This is where I started thinking about friction differently. Not as something to minimize universally, but as a design choice. Good friction protects users. Bad friction is just lazy engineering showing through.
 
 We had to be intentional about where we add friction:
+
 - Diagnosis Agent asks one question at a time (friction that improves accuracy)
 - Diagnosis Agent requests images after 2-3 questions (friction that prevents misdiagnosis)
 - Diagnosis Agent routes to consultation for serious symptoms (friction that ensures safety)
 - Products Agent collects constraints systematically (friction that improves personalization)
 
 But we removed friction elsewhere:
+
 - Router Agent maintains conversation flow (no "start over")
 - Products Agent remembers previous context (no re-asking for skin type if you just told the Diagnosis Agent)
 - All agents speak naturally, not like medical textbooks (no jargon barrier)
@@ -137,11 +139,13 @@ But when you map the paradoxes to the architecture, multi-agent stops being a te
 (I'm spending time on this because a lot of people building AI products right now are making architecture decisions based on what sounds cool or what the latest research paper recommends. But architecture should follow from your product constraints, not from engineering aesthetics.)
 
 Different paradoxes need different logic:
+
 - Medical safety paradox → needs conservative, systematic inquiry → Diagnosis Agent
 - Budget personalization paradox → needs constraint collection workflow → Products Agent
 - User intent clarity paradox → needs routing to prevent wrong tool for wrong job → Router Agent
 
 We ended up with six specialized agents:
+
 - **Router Agent**: Classifies intent and maintains conversation flow
 - **Diagnosis Agent**: Systematic medical inquiry with conservative escalation
 - **Products Agent**: Structured personalization and routine building
@@ -150,6 +154,7 @@ We ended up with six specialized agents:
 - **Support Agent**: Customer service and policy questions
 
 Each agent encoded specific product constraints:
+
 - Diagnosis Agent has a hard rule: one question at a time, always. Because multiple questions overwhelm users during medical inquiry.
 - Products Agent has a hard rule: collect all constraints before calling the product search tool. Because recommendations without constraints are useless.
 - Router Agent has flow protection logic: if an agent is mid-workflow, don't interrupt unless the topic change is completely obvious. Because context switching breaks personalization.
@@ -169,6 +174,7 @@ We started by understanding how actual dermatologists diagnose. Not from medical
 (This was the most valuable thing we did. I sat in on probably 30 consultations, just observing. Not to extract answers, but to understand the thinking process. How do experts navigate uncertainty in real time?)
 
 Here's what we learned:
+
 1. **Initial context is critical**: Age and gender matter (hormonal acne in a 16-year-old vs a 35-year-old are different)
 2. **Systematic inquiry reveals patterns**: Onset (when did this start?), Location (where on the body?), Triggers (what makes it better or worse?), Description (what does it look like and feel like?)
 3. **Visual confirmation reduces uncertainty**: Dermatologists always want to see the condition if possible
@@ -178,16 +184,19 @@ Here's what we learned:
 This became the Diagnosis Agent design:
 
 **Phase 1 - Initial Assessment**
+
 - First message: Ask for age and gender
 - Why: Diagnostic relevance (not just personalization theater)
 
 **Phase 2 - Systematic Inquiry**
+
 - One question per response, focusing on clinical areas (onset, location, triggers, description)
 - Why: Builds a differential diagnosis, reduces cognitive load
 - Limit: 6-8 total questions unless absolutely needed
 - Why: Respect user time, prevent fatigue
 
 **Phase 3 - Image Request**
+
 - After 2-3 questions, if no image provided, request a clear photo
 - Explain why: "Sharing an image could improve diagnostic accuracy by up to 40%"
 - Why this timing: Early enough to be useful, late enough that user is invested
@@ -197,12 +206,14 @@ This became the Diagnosis Agent design:
 (That 40% number isn't made up. We asked dermatologists how much more confident they felt with images vs text-only descriptions. The answer was consistently "way more confident." We translated "way more" into something quantifiable for users.)
 
 **Phase 4 - Diagnosis and Next Steps**
+
 - Suggest 1-2 likely conditions with simple explanations (no medical jargon)
 - Recommend next steps: Consultation (if uncertain or serious), Lifestyle triggers (if relevant), Routine recommendation (if appropriate)
 - Always use condition names (not vague "this is common")
 - Why: Users deserve clarity, not hedging
 
 **Phase 5 - Escalation Triggers**
+
 - Symptoms overlap or unclear → Consultation
 - Red flags (severe symptoms, potential infection, urgent concerns) → Consultation
 - Insufficient information after 8 questions → Consultation
@@ -213,6 +224,7 @@ This became the Diagnosis Agent design:
 The Diagnosis Agent isn't trying to be a doctor. It's trying to be a systematic, safe, helpful guide that knows its limits.
 
 We even split it into two modes:
+
 - **Diagnostic Mode**: For personal symptoms (triggers the systematic inquiry)
 - **Educational Mode**: For general questions like "how does retinol work?" or "can I use niacinamide with vitamin C?" (triggers web search and evidence-based explanations)
 
@@ -284,4 +296,4 @@ We tried to build something that's neither.
 
 ---
 
-*Part 2 will cover taking this to production, user validation, and what we learned from attempting to deploy a medical AI system in a real e-commerce environment. The messy, organizational, human parts that don't fit into clean architectural diagrams.*
+_Part 2 will cover taking this to production, user validation, and what we learned from attempting to deploy a medical AI system in a real e-commerce environment. The messy, organizational, human parts that don't fit into clean architectural diagrams._

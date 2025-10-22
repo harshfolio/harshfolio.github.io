@@ -1,10 +1,10 @@
 ---
-title: "Building a modern analytics stack without an engineering degree"
+title: 'Building a modern analytics stack without an engineering degree'
 description: "How I built Clinikally's entire analytics infrastructure from scratch using DLT, BigQuery, dbt, and Metabase to serve cross-functional teams."
 date: 2025-03-23
 published: true
 featured: false
-tags: ["Analytics", "BigQuery", "dbt", "Data Engineering"]
+tags: ['Analytics', 'BigQuery', 'dbt', 'Data Engineering']
 ---
 
 ## The Problem
@@ -36,16 +36,19 @@ Raw data is messy. dbt helped me transform it into something useful.
 I structured the transformation layer following analytics engineering best practices:
 
 **Staging models** → Clean, standardized raw data
+
 - Renamed columns for consistency
 - Applied data type conversions
 - Standardized timestamps and currencies
 
 **Intermediate models** → Business logic layer
+
 - Calculated customer lifetime value (LTV)
 - Built cohort analysis tables
 - Created marketing attribution models
 
 **Mart models** → Final, business-ready datasets
+
 - Finance: Revenue tracking, P&L components
 - Marketing: Channel performance, CAC, ROAS
 - Operations: Inventory turnover, fulfillment metrics
@@ -67,12 +70,14 @@ The key was making it self-serve. Instead of analysts being bottlenecks, teams c
 ## The Impact
 
 **Before:**
+
 - Finance waiting days for ad-hoc reports
 - Marketing flying blind on campaign performance
 - No cohort analysis or LTV tracking
 - Manual data pulls eating 10+ hours/week
 
 **After:**
+
 - Real-time dashboards updated hourly
 - Self-serve analytics for all teams
 - Data-driven decision making across the org
@@ -102,6 +107,7 @@ It's built for the modern data stack. Schema evolution, incremental loading, and
 ## What's Next
 
 Currently exploring:
+
 - Real-time streaming for inventory updates
 - ML models for demand forecasting
 - Customer churn prediction
@@ -111,6 +117,7 @@ But that's a post for another day.
 ---
 
 **Stack Summary:**
+
 - **Extraction**: DLT (Python)
 - **Warehouse**: BigQuery
 - **Transformation**: dbt Core

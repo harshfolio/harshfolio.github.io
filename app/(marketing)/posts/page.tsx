@@ -26,20 +26,18 @@ export default function BlogPage() {
       <div className="space-y-4">
         {publishedPosts.map((post) => (
           <Link key={post.slug} href={`/posts/${post.slugAsParams}`}>
-            <Card className="transition-all hover:border-muted-foreground hover:-translate-y-1">
+            <Card className="transition-all hover:-translate-y-1 hover:border-muted-foreground">
               <CardHeader>
                 {post.featured && (
                   <Badge variant="featured" className="mb-2 w-fit">
                     Featured
                   </Badge>
                 )}
-                <CardTitle className="transition-colors hover:text-primary">
-                  {post.title}
-                </CardTitle>
+                <CardTitle className="transition-colors hover:text-primary">{post.title}</CardTitle>
                 {post.description && (
                   <CardDescription className="mt-2">{post.description}</CardDescription>
                 )}
-                <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground font-mono">
+                <div className="mt-2 flex items-center gap-2 font-mono text-xs text-muted-foreground">
                   <time dateTime={post.date}>
                     {new Date(post.date).toLocaleDateString('en-US', {
                       year: 'numeric',

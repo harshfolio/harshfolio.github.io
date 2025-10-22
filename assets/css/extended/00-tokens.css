@@ -4,13 +4,13 @@
 
 /* Register custom properties for smooth animations */
 @property --primary-lightness {
-  syntax: "<percentage>";
+  syntax: '<percentage>';
   inherits: true;
   initial-value: 50%;
 }
 
 @property --theme-bg-lightness {
-  syntax: "<percentage>";
+  syntax: '<percentage>';
   inherits: true;
   initial-value: 100%;
 }
@@ -18,7 +18,7 @@
 :root {
   /* Color System - OKLCH for better color mixing */
   --primary-hsl: 211 100% 50%;
-  --primary: #007bff !important;  /* Fallback to hex for compatibility */
+  --primary: #007bff !important; /* Fallback to hex for compatibility */
   --primary-rgb: 0, 123, 255;
 
   /* Theme Colors */
@@ -47,21 +47,21 @@
   --spacing-3xl: 64px;
 
   /* Typography - Enhanced font stacks with better fallback metrics */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-serif: "New York", Georgia, "Times New Roman", serif;
-  --font-mono: ui-monospace, 'Courier New', Monaco, "Cascadia Code",
-    "Source Code Pro", monospace;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-serif: 'New York', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'Courier New', Monaco, 'Cascadia Code', 'Source Code Pro', monospace;
 
   /* Fluid Typography Scale tuned for 14px base */
-  --text-xs: clamp(11px, 0.75rem, 12px);   /* ~10.5–12px */
-  --text-sm: clamp(13px, 0.9rem, 14px);    /* ~12.6–14px */
-  --text-base: 14px;                       /* 14px */
-  --text-lg: clamp(16px, 1.1rem, 18px);    /* ~15.4–18px */
-  --text-xl: clamp(18px, 1.3rem, 20px);    /* ~18.2–20px */
-  --text-2xl: clamp(22px, 1.6rem, 24px);   /* ~22.4–24px */
-  --text-3xl: clamp(26px, 1.9rem, 28px);   /* ~26.6–28px */
-  --text-4xl: clamp(32px, 2.25rem, 34px);  /* ~31.5–34px */
+  --text-xs: clamp(11px, 0.75rem, 12px); /* ~10.5–12px */
+  --text-sm: clamp(13px, 0.9rem, 14px); /* ~12.6–14px */
+  --text-base: 14px; /* 14px */
+  --text-lg: clamp(16px, 1.1rem, 18px); /* ~15.4–18px */
+  --text-xl: clamp(18px, 1.3rem, 20px); /* ~18.2–20px */
+  --text-2xl: clamp(22px, 1.6rem, 24px); /* ~22.4–24px */
+  --text-3xl: clamp(26px, 1.9rem, 28px); /* ~26.6–28px */
+  --text-4xl: clamp(32px, 2.25rem, 34px); /* ~31.5–34px */
 
   /* Line Heights */
   --leading-tight: 1.2;
@@ -99,7 +99,7 @@
 }
 
 .dark {
-  --primary: #66b0ff !important;  /* Fallback to hex for compatibility */
+  --primary: #66b0ff !important; /* Fallback to hex for compatibility */
   --primary-rgb: 102, 176, 255;
 
   --theme: #1a1a1a !important;
@@ -122,4 +122,3 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6);
 }
-

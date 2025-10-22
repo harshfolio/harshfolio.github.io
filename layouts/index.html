@@ -2,48 +2,41 @@
 
 <article id="main-content" class="home-page">
   {{- if .Content }}
-  <div class="home-content">
-    {{ .Content }}
-  </div>
+  <div class="home-content">{{ .Content }}</div>
   {{- end }}
 
   <section class="published-posts">
     <h2>Writing</h2>
     <div class="posts-grid">
-      {{- range where site.RegularPages "Type" "in" site.Params.mainSections }}
-        {{- $cover := .Params.cover -}}
-        {{- $showCover := true -}}
-        {{- if and $cover (isset $cover "hiddenInList") }}
-          {{- $showCover = (not $cover.hiddenInList) -}}
-        {{- end -}}
-        {{- $img := "" -}}
-        {{- if and $cover (isset $cover "image") (ne $cover.image "") -}}
-          {{- $img = $cover.image -}}
-        {{- else if .Params.image -}}
-          {{- $img = .Params.image -}}
-        {{- end -}}
+      {{- range where site.RegularPages "Type" "in" site.Params.mainSections }} {{- $cover :=
+      .Params.cover -}} {{- $showCover := true -}} {{- if and $cover (isset $cover "hiddenInList")
+      }} {{- $showCover = (not $cover.hiddenInList) -}} {{- end -}} {{- $img := "" -}} {{- if and
+      $cover (isset $cover "image") (ne $cover.image "") -}} {{- $img = $cover.image -}} {{- else if
+      .Params.image -}} {{- $img = .Params.image -}} {{- end -}}
 
-        <a class="post-card" href="{{ .RelPermalink }}">
-          {{- if and $showCover (ne $img "") -}}
-          <div class="post-card__cover">
-            <img class="post-card__image" src="{{ $img | absURL }}" alt="" loading="lazy" />
+      <a class="post-card" href="{{ .RelPermalink }}">
+        {{- if and $showCover (ne $img "") -}}
+        <div class="post-card__cover">
+          <img class="post-card__image" src="{{ $img | absURL }}" alt="" loading="lazy" />
+        </div>
+        {{- end -}}
+        <div class="post-card__content">
+          {{- if .Params.featured }}<span class="badge badge--featured">Featured</span>{{ end -}}
+          <h2 class="post-card__title">{{ .Title }}</h2>
+          {{- if .Description }}
+          <p class="post-card__excerpt">{{ .Description }}</p>
+          {{- end }}
+          <div class="post-card__meta">
+            <time>{{ .Date.Format "January 2, 2006" }}</time>
+            {{- if .ReadingTime }}<span> · {{ .ReadingTime }} min</span>{{- end }}
           </div>
-          {{- end -}}
-          <div class="post-card__content">
-            {{- if .Params.featured }}<span class="badge badge--featured">Featured</span>{{ end -}}
-            <h2 class="post-card__title">{{ .Title }}</h2>
-            {{- if .Description }}<p class="post-card__excerpt">{{ .Description }}</p>{{- end }}
-            <div class="post-card__meta">
-              <time>{{ .Date.Format "January 2, 2006" }}</time>
-              {{- if .ReadingTime }}<span> · {{ .ReadingTime }} min</span>{{- end }}
-            </div>
-            {{- with .Params.tags }}
-            <div class="post-card__tags">
-              {{- range . }}<span class="tag">{{ . }}</span>{{- end }}
-            </div>
-            {{- end }}
+          {{- with .Params.tags }}
+          <div class="post-card__tags">
+            {{- range . }}<span class="tag">{{ . }}</span>{{- end }}
           </div>
-        </a>
+          {{- end }}
+        </div>
+      </a>
       {{- end }}
     </div>
     <div class="posts-view-all">
@@ -52,6 +45,4 @@
   </section>
 </article>
 
-{{- partial "easter-egg.html" . }}
-
-{{- end }}
+{{- partial "easter-egg.html" . }} {{- end }}

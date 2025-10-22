@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border">
       <div className="container mx-auto px-6 py-12 text-center">
-        <div className="flex justify-center gap-6 mb-4">
+        <div className="mb-4 flex justify-center gap-6">
           <a
             href="https://github.com/harshfolio"
             target="_blank"

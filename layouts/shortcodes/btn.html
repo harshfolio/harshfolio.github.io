@@ -1,17 +1,35 @@
-{{- $href := .Get "href" -}}
-{{- $text := .Get "text" | default (.Inner | default "Button") -}}
-{{- $title := .Get "title" -}}
-{{- $variant := .Get "variant" | default "outline" -}}
-{{- $size := .Get "size" | default "sm" -}}
-{{- $target := .Get "target" -}}
-{{- $rel := .Get "rel" -}}
-{{- if and (not $rel) (eq $target "_blank") -}}
-  {{- $rel = "noopener noreferrer" -}}
-{{- end -}}
+{{- $href := .Get "href" -}} {{- $text := .Get "text" | default (.Inner | default "Button") -}} {{-
+$title := .Get "title" -}} {{- $variant := .Get "variant" | default "outline" -}} {{- $size := .Get
+"size" | default "sm" -}} {{- $target := .Get "target" -}} {{- $rel := .Get "rel" -}} {{- if and
+(not $rel) (eq $target "_blank") -}} {{- $rel = "noopener noreferrer" -}} {{- end -}}
 
-<a class="btn btn--{{ $variant }} btn--{{ $size }}" href="{{ $href }}"{{ with $title }} title="{{ . }}"{{ end }}{{ with $target }} target="{{ . }}"{{ end }}{{ with $rel }} rel="{{ . }}"{{ end }}>
-  {{- $text -}}
-  {{- if .Get "icon" }}<span class="btn__icon" aria-hidden="true">{{ .Get "icon" }}</span>{{ end -}}
-  {{- if .Get "sr" }}<span class="sr-only">{{ .Get "sr" }}</span>{{ end -}}
+<a
+  class="btn btn--{{ $variant }} btn--{{ $size }}"
+  href="{{ $href }}"
+  {{
+  with
+  $title
+  }}
+  title="{{ . }}"
+  {{
+  end
+  }}{{
+  with
+  $target
+  }}
+  target="{{ . }}"
+  {{
+  end
+  }}{{
+  with
+  $rel
+  }}
+  rel="{{ . }}"
+  {{
+  end
+  }}
+>
+  {{- $text -}} {{- if .Get "icon" }}<span class="btn__icon" aria-hidden="true"
+    >{{ .Get "icon" }}</span
+  >{{ end -}} {{- if .Get "sr" }}<span class="sr-only">{{ .Get "sr" }}</span>{{ end -}}
 </a>
-

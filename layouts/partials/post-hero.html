@@ -1,33 +1,16 @@
-{{- /* Renders a hero image for a post if provided via front matter. 
-       Supported params:
-       cover.image, cover.alt, cover.caption, cover.hiddenInSingle
-       image (string), hero (string) as fallbacks. */ -}}
-
-{{- $cover := .Params.cover -}}
-{{- $hidden := false -}}
-{{- if and $cover (isset $cover "hiddenInSingle") }}
-  {{- $hidden = $cover.hiddenInSingle -}}
-{{- end -}}
-
-{{- $img := "" -}}
-{{- $alt := "" -}}
-{{- $caption := "" -}}
-{{- if and $cover (isset $cover "image") (ne $cover.image "") -}}
-  {{- $img = $cover.image -}}
-  {{- if isset $cover "alt" }}{{- $alt = $cover.alt -}}{{- end -}}
-  {{- if isset $cover "caption" }}{{- $caption = $cover.caption -}}{{- end -}}
-{{- else if .Params.image -}}
-  {{- $img = .Params.image -}}
-{{- else if .Params.hero -}}
-  {{- $img = .Params.hero -}}
-{{- end -}}
-
+{{- /* Renders a hero image for a post if provided via front matter. Supported params: cover.image,
+cover.alt, cover.caption, cover.hiddenInSingle image (string), hero (string) as fallbacks. */ -}}
+{{- $cover := .Params.cover -}} {{- $hidden := false -}} {{- if and $cover (isset $cover
+"hiddenInSingle") }} {{- $hidden = $cover.hiddenInSingle -}} {{- end -}} {{- $img := "" -}} {{- $alt
+:= "" -}} {{- $caption := "" -}} {{- if and $cover (isset $cover "image") (ne $cover.image "") -}}
+{{- $img = $cover.image -}} {{- if isset $cover "alt" }}{{- $alt = $cover.alt -}}{{- end -}} {{- if
+isset $cover "caption" }}{{- $caption = $cover.caption -}}{{- end -}} {{- else if .Params.image -}}
+{{- $img = .Params.image -}} {{- else if .Params.hero -}} {{- $img = .Params.hero -}} {{- end -}}
 {{- if and (ne $img "") (not $hidden) -}}
-  <figure class="post-hero">
-    <img class="post-hero__img" src="{{ $img | absURL }}" alt="{{ $alt }}" loading="eager" />
-    {{- if $caption -}}
-      <figcaption class="post-hero__caption">{{ $caption | safeHTML }}</figcaption>
-    {{- end -}}
-  </figure>
+<figure class="post-hero">
+  <img class="post-hero__img" src="{{ $img | absURL }}" alt="{{ $alt }}" loading="eager" />
+  {{- if $caption -}}
+  <figcaption class="post-hero__caption">{{ $caption | safeHTML }}</figcaption>
+  {{- end -}}
+</figure>
 {{- end -}}
-

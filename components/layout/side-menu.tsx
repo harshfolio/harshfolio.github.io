@@ -38,7 +38,7 @@ export function SideMenu({ open, onClose }: SideMenuProps) {
         <div className="flex h-full flex-col">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-border p-4">
-            <h2 className="text-lg font-serif">Menu</h2>
+            <h2 className="font-serif text-lg">Menu</h2>
             <button
               onClick={onClose}
               className="inline-flex h-10 w-10 items-center justify-center hover:text-primary"

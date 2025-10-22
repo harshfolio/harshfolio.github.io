@@ -14,7 +14,7 @@ export function Header() {
       <header className="sticky top-0 z-50 w-full border-b-2 border-border bg-background">
         <nav className="container mx-auto flex items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <span className="text-2xl font-semibold text-primary font-[family-name:var(--font-serif)]">
+            <span className="font-[family-name:var(--font-serif)] text-2xl font-semibold text-primary">
               Harsh Sharma
             </span>
           </Link>

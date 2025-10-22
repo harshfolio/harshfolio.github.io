@@ -64,10 +64,8 @@ export default async function PostPage({ params }: PostPageProps) {
           </Badge>
         )}
         <h1 className="mb-4 text-4xl font-semibold">{post.title}</h1>
-        {post.description && (
-          <p className="text-lg text-muted-foreground">{post.description}</p>
-        )}
-        <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground font-mono">
+        {post.description && <p className="text-lg text-muted-foreground">{post.description}</p>}
+        <div className="mt-4 flex items-center gap-2 font-mono text-sm text-muted-foreground">
           <time dateTime={post.date}>
             {new Date(post.date).toLocaleDateString('en-US', {
               year: 'numeric',
@@ -88,7 +86,7 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       <div
-        className="prose prose-lg dark:prose-invert max-w-none font-serif"
+        className="prose prose-lg max-w-none font-serif dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: post.body }}
       />
     </article>
