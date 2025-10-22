@@ -1,7 +1,19 @@
-# Hugo
+# Next.js
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# Velite
+.velite/
+
+# Hugo (legacy)
 public/
 resources/
 .hugo_build.lock
+
+# Testing
+coverage/
 
 # OS
 .DS_Store
@@ -14,15 +26,15 @@ Thumbs.db
 *.swo
 *~
 
-# Don't include README in Hugo builds
-README.md
-
-# Local tooling binaries; only keep tracked scripts
-.bin/*
-!.bin/sync-readme
+# Env
+.env
+.env*.local
 
 # Node
 node_modules/
 
 # Git worktrees
 .worktrees/
+
+# Vercel
+.vercel

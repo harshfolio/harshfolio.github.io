@@ -1,8 +1,5 @@
-public/
-resources/
-themes/
-node_modules/
-.worktrees/
-.bin/
-README.md
-
+.next
+node_modules
+public
+.velite
+*.md

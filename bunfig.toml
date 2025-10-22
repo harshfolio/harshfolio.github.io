@@ -1,0 +1,10 @@
+[install]
+# Use exact versions for reproducibility
+exact = true
+
+[install.cache]
+# Disable for clean installs
+disable = false
+
+[test]
+preload = ["./test/setup.ts"]
