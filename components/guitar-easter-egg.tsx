@@ -1,0 +1,77 @@
+'use client'
+
+import { useEffect } from 'react'
+
+export function GuitarEasterEgg() {
+  useEffect(() => {
+    const playGuitarChord = () => {
+      // Create AudioContext for generating guitar chord sound
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext
+      const audioContext = new AudioContext()
+      const now = audioContext.currentTime
+
+      // C Major chord frequencies (C, E, G)
+      const frequencies = [261.63, 329.63, 392.0]
+
+      frequencies.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator()
+        const gainNode = audioContext.createGain()
+
+        oscillator.connect(gainNode)
+        gainNode.connect(audioContext.destination)
+
+        oscillator.frequency.value = freq
+        oscillator.type = 'triangle' // Softer sound like a guitar
+
+        // ADSR envelope for guitar-like sound
+        gainNode.gain.setValueAtTime(0, now)
+        gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01) // Attack
+        gainNode.gain.exponentialRampToValueAtTime(0.1, now + 0.1) // Decay
+        gainNode.gain.exponentialRampToValueAtTime(0.05, now + 0.5) // Sustain
+        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 1.5) // Release
+
+        oscillator.start(now + index * 0.02) // Slight strum delay
+        oscillator.stop(now + 1.5)
+      })
+    }
+
+    // Find the guitar text and make it clickable
+    const paragraphs = document.querySelectorAll('.home-content p, .prose p')
+
+    paragraphs.forEach((p) => {
+      if (p.textContent?.toLowerCase().includes('guitar')) {
+        const text = p.innerHTML
+        const guitarMatch = text.match(/(the guitar)/i)
+
+        if (guitarMatch) {
+          const newHTML = text.replace(
+            guitarMatch[0],
+            `<span class="easter-egg-guitar">${guitarMatch[0]}</span>`
+          )
+          p.innerHTML = newHTML
+
+          const guitarSpan = p.querySelector('.easter-egg-guitar') as HTMLElement
+          if (guitarSpan) {
+            guitarSpan.style.cursor = 'pointer'
+            guitarSpan.style.textDecoration = 'underline dotted'
+            guitarSpan.style.transition = 'all 0.2s ease'
+
+            guitarSpan.addEventListener('click', function () {
+              playGuitarChord()
+
+              // Visual feedback
+              guitarSpan.style.transform = 'scale(1.05)'
+              guitarSpan.style.opacity = '0.7'
+              setTimeout(() => {
+                guitarSpan.style.transform = 'scale(1)'
+                guitarSpan.style.opacity = '1'
+              }, 300)
+            })
+          }
+        }
+      }
+    })
+  }, [])
+
+  return null // This component doesn't render anything
+}

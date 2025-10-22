@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
+import { ReadingProgress } from '@/components/reading-progress'
 import { posts } from '#site/content'
 
 interface PostPageProps {
@@ -56,39 +57,42 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article className="container mx-auto max-w-3xl px-6 py-12">
-      <div className="mb-8 border-b pb-8">
-        {post.featured && (
-          <Badge variant="featured" className="mb-4">
-            Featured
-          </Badge>
-        )}
-        <h1 className="mb-4 text-4xl font-semibold">{post.title}</h1>
-        {post.description && <p className="text-lg text-muted-foreground">{post.description}</p>}
-        <div className="mt-4 flex items-center gap-2 font-mono text-sm text-muted-foreground">
-          <time dateTime={post.date}>
-            {new Date(post.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-        </div>
-        {post.tags && post.tags.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
-              <Badge key={tag} variant="outline">
-                {tag}
-              </Badge>
-            ))}
+    <>
+      <ReadingProgress />
+      <article className="container mx-auto max-w-3xl px-6 py-12">
+        <div className="mb-8 border-b pb-8">
+          {post.featured && (
+            <Badge variant="featured" className="mb-4">
+              Featured
+            </Badge>
+          )}
+          <h1 className="mb-4 text-4xl font-semibold">{post.title}</h1>
+          {post.description && <p className="text-lg text-muted-foreground">{post.description}</p>}
+          <div className="mt-4 flex items-center gap-2 font-mono text-sm text-muted-foreground">
+            <time dateTime={post.date}>
+              {new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
           </div>
-        )}
-      </div>
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <Badge key={tag} variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          )}
+        </div>
 
-      <div
-        className="prose prose-lg max-w-none font-serif dark:prose-invert"
-        dangerouslySetInnerHTML={{ __html: post.body }}
-      />
-    </article>
+        <div
+          className="prose prose-lg max-w-none font-serif dark:prose-invert"
+          dangerouslySetInnerHTML={{ __html: post.body }}
+        />
+      </article>
+    </>
   )
 }
