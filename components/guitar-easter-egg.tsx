@@ -6,8 +6,9 @@ export function GuitarEasterEgg() {
   useEffect(() => {
     const playGuitarChord = () => {
       // Create AudioContext for generating guitar chord sound
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext
-      const audioContext = new AudioContext()
+      const AudioContextClass =
+        window.AudioContext || (window as Window & { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext
+      const audioContext = new AudioContextClass()
       const now = audioContext.currentTime
 
       // C Major chord frequencies (C, E, G)
