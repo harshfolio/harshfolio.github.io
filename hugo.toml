@@ -4,6 +4,8 @@ title = 'Harsh Sharma'
 theme = 'PaperMod'
 enableRobotsTXT = true
 
+# Deployment: GitHub Pages via GitHub Actions
+
 # Build configuration for optimization
 [build]
   writeStats = true
