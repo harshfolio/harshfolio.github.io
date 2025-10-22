@@ -8,9 +8,12 @@ build/
 .velite/
 
 # Hugo (legacy)
-public/
 resources/
 .hugo_build.lock
+
+# Next.js public - ignore generated files but keep images
+public/static/
+!public/images/
 
 # Testing
 coverage/

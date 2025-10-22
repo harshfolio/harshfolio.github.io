@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { fontSans, fontSerif, fontMono } from '@/lib/fonts'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -44,7 +46,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
