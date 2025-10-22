@@ -10,7 +10,7 @@ const computedFields = <T extends { slug: string }>(data: T) => ({
 
 const posts = defineCollection({
   name: 'Post',
-  pattern: 'posts/**/*.mdx',
+  pattern: 'posts/**/*.{md,mdx}',
   schema: s
     .object({
       slug: s.path(),
@@ -21,7 +21,7 @@ const posts = defineCollection({
       featured: s.boolean().default(false),
       tags: s.array(s.string()).optional(),
       image: s.image().optional(),
-      body: s.mdx(),
+      body: s.markdown(),
     })
     .transform(computedFields),
 })
@@ -36,7 +36,7 @@ export default defineConfig({
     clean: true,
   },
   collections: { posts },
-  mdx: {
+  markdown: {
     rehypePlugins: [
       rehypeSlug,
       [rehypePrettyCode, { theme: 'github-dark' }],
